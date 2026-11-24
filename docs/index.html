@@ -10,7 +10,8 @@
 <meta property="og:description" content="Christmas ball, tree star, dancing Santa, fairy lights, wreath, gift box আর Christmas tree। ক্যাশ অন ডেলিভারিতে সারা দেশে অর্ডার করুন।">
 <meta property="og:image" content="https://abid2929.github.io/Christmas-Gallery/img/banner.webp">
 <meta name="theme-color" content="#8a1020">
-<link rel="canonical" href="https://abid2929.github.io/Christmas-Gallery/"><link rel="preload" as="image" href="img/p4-s.webp" imagesrcset="img/p4-s.webp 480w, img/p4.webp 1000w" imagesizes="(max-width:760px) 250px, 400px" fetchpriority="high"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎄%3C/text%3E%3C/svg%3E">
+<link rel="canonical" href="https://abid2929.github.io/Christmas-Gallery/"><link rel="preload" as="image" href="img/banner.webp" imagesrcset="img/banner-s.webp 480w, img/banner-800.webp 800w, img/banner-m.webp 1200w, img/banner.webp 2048w" imagesizes="100vw" fetchpriority="high">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎄%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Poppins:wght@500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Poppins:wght@500;600;700&display=swap"></noscript>
@@ -519,6 +520,29 @@ footer .fbrand{font-family:"Playfair Display",serif;font-size:26px;color:#fff}
 @media (max-width:520px){.brand b{font-size:18px}.brand .tree-ic{width:36px;height:36px}.nav{padding:10px 0}}
 @media (max-width:360px){.brand b{font-size:16px}.lang{padding:0 9px}}
 .trees .head .xmas{color:var(--gold2)}.trees .head .xmas:before,.trees .head .xmas:after{background:var(--gold2)}.trees .head p{color:rgba(255,255,255,.82)}.trees .card .opts,.trees .card .lowq{color:var(--gold2)}
+/* phone: wide landscape hero banner + clear category grid */
+@media (max-width:760px){
+ .slide-grid{display:flex;flex-direction:column;padding:0 0 58px;min-height:0}
+ .slide-grid .pic{position:relative;inset:auto;order:-1;margin:0 -20px;height:auto;aspect-ratio:16/10;overflow:hidden}
+ .slide-grid .pic img{width:100%;height:100%;object-fit:cover;-webkit-mask-image:none;mask-image:none}
+ .slide-grid .pic:after{display:block;background:linear-gradient(0deg,rgba(58,6,16,1) 0,rgba(58,6,16,.55) 32%,transparent 62%)}
+ .slide-grid>div:first-child{margin-top:-74px;position:relative;z-index:2}
+ .slide-grid .pic .note{top:12px;right:12px;bottom:auto}
+ .slide-grid h1,.slide-grid h2{font-size:clamp(27px,7.6vw,36px);line-height:1.2}
+ .slide-grid p{font-size:14.5px;margin:10px 0 18px;line-height:1.55}
+ .tag{font-size:15px;margin-bottom:6px}
+ .slide-grid .btns{gap:10px}.slide-grid .btns .btn{flex:1;padding:12px 10px;font-size:14.5px}
+ .cats{grid-template-columns:repeat(2,1fr)!important;overflow:visible;padding:0;scroll-snap-type:none;gap:12px}
+ .cat .c{aspect-ratio:4/3}
+ .cat{font-size:16px}
+ .cat .cn{margin:0 12px 32px 14px}.cat>small{margin:0 0 12px 14px}
+}
+@media (min-width:761px) and (max-width:1100px){.cats{grid-template-columns:repeat(3,1fr)}.cat .c{aspect-ratio:4/3}}
+.topbanner{background:radial-gradient(circle at 50% 50%,#7a0f1e,#3a0610);line-height:0}
+.topbanner img{width:100%;max-width:1600px;height:auto;margin:0 auto;display:block}
+@media (max-width:760px){.slide-grid .pic img{width:100%!important;max-width:none!important}.slide-grid{padding-top:0}}
+@media (max-width:760px){.slide-grid .pic{align-self:stretch;width:auto}.slide-grid>div:first-child{align-self:stretch}}
+@media (max-width:760px){.slide-grid .pic{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}}
 </style>
 </head>
 <body>
@@ -544,6 +568,7 @@ footer .fbrand{font-family:"Playfair Display",serif;font-size:26px;color:#fff}
  </div>
 </header>
 
+<div class="topbanner"><img src="img/banner.webp" srcset="img/banner-s.webp 480w, img/banner-800.webp 800w, img/banner-m.webp 1200w, img/banner.webp 2048w" sizes="100vw" alt="Christmas Gallery: All Christmas Decorate Items Here" width="2048" height="758" fetchpriority="high"></div>
 <div class="hero" id="top">
  <canvas id="snow"></canvas>
  <div class="slides" id="slides">
@@ -551,7 +576,7 @@ footer .fbrand{font-family:"Playfair Display",serif;font-size:26px;color:#fff}
    <div>
     <span class="tag" data-en="New Collection 2026">New Collection 2026</span>    <h1 data-en="Dress your home in Christmas colours">ঘর সাজান Christmas এর রঙে</h1>    <p data-en="Christmas balls, tree stars, Santa, lights and wreaths. Hand picked decorations, ordered from home.">Christmas ball, tree star, Santa, lights আর wreath। বাছাই করা সুন্দর জিনিস, ঘরে বসে অর্ডার করুন।</p>    <div class="btns"><a class="btn btn-gold" href="#products"><span data-en="Shop now">Shop now</span></a><a class="btn btn-wa" href="https://wa.me/8801779443155" target="_blank" rel="noopener" data-contact><span data-en="Order on WhatsApp">WhatsApp এ অর্ডার</span></a></div>
    </div>
-   <div class="pic"><span class="ring"></span><img src="img/p4-s.webp" srcset="img/p4-s.webp 480w, img/p4.webp 1000w" sizes="(max-width:760px) 250px, 400px" alt="ঘর সাজান Christmas এর রঙে" width="400" height="500" fetchpriority="high"><span class="note">💵<span><b>Cash on Delivery</b><span data-en="All over Bangladesh">সারা দেশে ডেলিভারি</span></span></span></div>
+   <div class="pic"><span class="ring"></span><img src="img/p4-s.webp" srcset="img/p4-s.webp 480w, img/p4.webp 1000w" sizes="(max-width:760px) 250px, 400px" alt="ঘর সাজান Christmas এর রঙে" width="400" height="500"><span class="note">💵<span><b>Cash on Delivery</b><span data-en="All over Bangladesh">সারা দেশে ডেলিভারি</span></span></span></div>
   </div></div>
     <div class="slide"><div class="wrap slide-grid">
    <div>

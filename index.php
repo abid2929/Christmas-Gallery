@@ -57,7 +57,7 @@ foreach (pv_read('banners') as $b) if (!empty($b['on']) && !empty($b['img'])) $b
     'subtitle' => (string)(($b['sub'] ?? '') ?: $S('cms_hero_caption')), 'subtitle_en' => (string)($b['sub_en'] ?? ''),
     'btn_text' => (string)(($b['btn'] ?? '') ?: 'Shop now'), 'btn_en' => (string)(($b['btn_en'] ?? '') ?: 'Shop now'), 'btn_link' => (string)(($b['link'] ?? '') ?: '#products'),
 ];
-$heroMain = !$banners;
+$heroMain = false;
 $allRev = []; foreach (array_slice($revAll, 0, 9) as $r) $allRev[] = ['n' => $r['name'], 'r' => max(1, min(5, (int)($r['stars'] ?? 5))), 'b' => $r['text'], 'p' => (string)($r['pet'] ?? ''), 'd' => ''];
 
 $bk = trim((string)($pm['bkash'] ?? '')); $ng = trim((string)($pm['nagad'] ?? ''));
@@ -97,7 +97,7 @@ $base = defined('CG_BASE') ? CG_BASE : (((!empty($_SERVER['HTTPS']) && $_SERVER[
 <meta property="og:image" content="<?= h($base . 'img/banner.webp') ?>">
 <meta name="theme-color" content="#8a1020">
 <?php if (!defined('CG_DEMO')): ?><link rel="canonical" href="<?= h($base) ?>"><?php endif; ?>
-<?php if (!$heroMain && $banners): $hi = $banners[0]['img']; ?><link rel="preload" as="image" href="<?= h(img_url(thumb_path($hi))) ?>" imagesrcset="<?= h(img_url(thumb_path($hi))) ?> 480w, <?= h(img_url($hi)) ?> 1000w" imagesizes="(max-width:760px) 250px, 400px" fetchpriority="high"><?php endif; ?>
+<link rel="preload" as="image" href="img/banner.webp" imagesrcset="img/banner-s.webp 480w, img/banner-800.webp 800w, img/banner-m.webp 1200w, img/banner.webp 2048w" imagesizes="100vw" fetchpriority="high">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎄%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -612,6 +612,29 @@ footer .fbrand{font-family:"Playfair Display",serif;font-size:26px;color:#fff}
 @media (max-width:520px){.brand b{font-size:18px}.brand .tree-ic{width:36px;height:36px}.nav{padding:10px 0}}
 @media (max-width:360px){.brand b{font-size:16px}.lang{padding:0 9px}}
 .trees .head .xmas{color:var(--gold2)}.trees .head .xmas:before,.trees .head .xmas:after{background:var(--gold2)}.trees .head p{color:rgba(255,255,255,.82)}.trees .card .opts,.trees .card .lowq{color:var(--gold2)}
+/* phone: wide landscape hero banner + clear category grid */
+@media (max-width:760px){
+ .slide-grid{display:flex;flex-direction:column;padding:0 0 58px;min-height:0}
+ .slide-grid .pic{position:relative;inset:auto;order:-1;margin:0 -20px;height:auto;aspect-ratio:16/10;overflow:hidden}
+ .slide-grid .pic img{width:100%;height:100%;object-fit:cover;-webkit-mask-image:none;mask-image:none}
+ .slide-grid .pic:after{display:block;background:linear-gradient(0deg,rgba(58,6,16,1) 0,rgba(58,6,16,.55) 32%,transparent 62%)}
+ .slide-grid>div:first-child{margin-top:-74px;position:relative;z-index:2}
+ .slide-grid .pic .note{top:12px;right:12px;bottom:auto}
+ .slide-grid h1,.slide-grid h2{font-size:clamp(27px,7.6vw,36px);line-height:1.2}
+ .slide-grid p{font-size:14.5px;margin:10px 0 18px;line-height:1.55}
+ .tag{font-size:15px;margin-bottom:6px}
+ .slide-grid .btns{gap:10px}.slide-grid .btns .btn{flex:1;padding:12px 10px;font-size:14.5px}
+ .cats{grid-template-columns:repeat(2,1fr)!important;overflow:visible;padding:0;scroll-snap-type:none;gap:12px}
+ .cat .c{aspect-ratio:4/3}
+ .cat{font-size:16px}
+ .cat .cn{margin:0 12px 32px 14px}.cat>small{margin:0 0 12px 14px}
+}
+@media (min-width:761px) and (max-width:1100px){.cats{grid-template-columns:repeat(3,1fr)}.cat .c{aspect-ratio:4/3}}
+.topbanner{background:radial-gradient(circle at 50% 50%,#7a0f1e,#3a0610);line-height:0}
+.topbanner img{width:100%;max-width:1600px;height:auto;margin:0 auto;display:block}
+@media (max-width:760px){.slide-grid .pic img{width:100%!important;max-width:none!important}.slide-grid{padding-top:0}}
+@media (max-width:760px){.slide-grid .pic{align-self:stretch;width:auto}.slide-grid>div:first-child{align-self:stretch}}
+@media (max-width:760px){.slide-grid .pic{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}}
 </style>
 </head>
 <body>
@@ -644,6 +667,7 @@ $PHIC = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" s
  </div>
 </header>
 
+<div class="topbanner"><img src="img/banner.webp" srcset="img/banner-s.webp 480w, img/banner-800.webp 800w, img/banner-m.webp 1200w, img/banner.webp 2048w" sizes="100vw" alt="<?= h($store) ?>: All Christmas Decorate Items Here" width="2048" height="758" fetchpriority="high"></div>
 <div class="hero" id="top">
  <canvas id="snow"></canvas>
  <div class="slides" id="slides">
@@ -662,7 +686,7 @@ $PHIC = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" s
     <?php if ($b['subtitle']): ?><?= bi($b['subtitle'], $b['subtitle_en'] ?: $b['subtitle'], 'p') ?><?php endif; ?>
     <div class="btns"><?php if ($b['btn_text']): ?><a class="btn btn-gold" href="<?= h($b['btn_link'] ?: '#products') ?>"><?= bi($b['btn_text'], $b['btn_en'] ?: $b['btn_text']) ?></a><?php endif; ?><a class="btn btn-wa" href="https://wa.me/<?= h($wa) ?>" target="_blank" rel="noopener" data-contact><?= bi('WhatsApp এ অর্ডার', 'Order on WhatsApp') ?></a></div>
    </div>
-   <div class="pic"><span class="ring"></span><img src="<?= h(img_url(thumb_path($b['img']))) ?>" srcset="<?= h(img_url(thumb_path($b['img']))) ?> 480w, <?= h(img_url($b['img'])) ?> 1000w" sizes="(max-width:760px) 250px, 400px" alt="<?= h($b['title']) ?>" width="400" height="500"<?= $bi++ ? ' loading="lazy"' : ' fetchpriority="high"' ?>><span class="note">💵<span><b>Cash on Delivery</b><?= bi('সারা দেশে ডেলিভারি', 'All over Bangladesh') ?></span></span></div>
+   <div class="pic"><span class="ring"></span><img src="<?= h(img_url(thumb_path($b['img']))) ?>" srcset="<?= h(img_url(thumb_path($b['img']))) ?> 480w, <?= h(img_url($b['img'])) ?> 1000w" sizes="(max-width:760px) 250px, 400px" alt="<?= h($b['title']) ?>" width="400" height="500"<?= $bi++ ? ' loading="lazy"' : '' ?>><span class="note">💵<span><b>Cash on Delivery</b><?= bi('সারা দেশে ডেলিভারি', 'All over Bangladesh') ?></span></span></div>
   </div></div>
   <?php endforeach; ?>
  </div>
