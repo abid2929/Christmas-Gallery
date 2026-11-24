@@ -1,4 +1,5 @@
-data/*.sqlite*
-uploads/*
-!uploads/.htaccess
+data/private/*.php
+data/private/.lock-*
+data/*.tmp*
+img/p/up-*
 .DS_Store

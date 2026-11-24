@@ -1,0 +1,41 @@
+[
+    {
+        "img": "p4.webp",
+        "title": "ঘর সাজান Christmas এর রঙে",
+        "link": "#products",
+        "on": 1,
+        "tag": "New Collection 2026",
+        "tag_en": "New Collection 2026",
+        "title_en": "Dress your home in Christmas colours",
+        "sub": "Christmas ball, tree star, Santa, lights আর wreath। বাছাই করা সুন্দর জিনিস, ঘরে বসে অর্ডার করুন।",
+        "sub_en": "Christmas balls, tree stars, Santa, lights and wreaths. Hand picked decorations, ordered from home.",
+        "btn": "Shop now",
+        "btn_en": "Shop now"
+    },
+    {
+        "img": "t-medium.webp",
+        "title": "আপনার ঘরের জন্য Christmas Tree",
+        "link": "#trees",
+        "on": 1,
+        "tag": "Christmas Trees",
+        "tag_en": "Christmas Trees",
+        "title_en": "A Christmas Tree for your home",
+        "sub": "ছোট টেবিল ট্রি থেকে বড় ফ্লোর ট্রি পর্যন্ত। সাথে বল, স্টার আর সব সাজানোর জিনিস এক জায়গায়।",
+        "sub_en": "From a small table top tree to a big floor tree. Balls, stars and every decoration in one place.",
+        "btn": "ট্রি দেখুন",
+        "btn_en": "See trees"
+    },
+    {
+        "img": "p5.webp",
+        "title": "Gift Box, Wreath আর Santa",
+        "link": "#products",
+        "on": 1,
+        "tag": "Gifts & Décor",
+        "tag_en": "Gifts & Décor",
+        "title_en": "Gift boxes, wreaths and Santa",
+        "sub": "প্রিয়জনের জন্য Christmas গিফট, দরজার রিদ, মোজা আর মোমবাতি এক জায়গায়।",
+        "sub_en": "Christmas gifts for loved ones, door wreaths, stockings and candles in one place.",
+        "btn": "সব আইটেম দেখুন",
+        "btn_en": "See all items"
+    }
+]

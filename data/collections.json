@@ -1,0 +1,13 @@
+[
+    {
+        "slug": "best-sellers",
+        "name": "Best Sellers",
+        "ids": [
+            "cg1",
+            "cg4",
+            "cg7",
+            "cg5"
+        ],
+        "on": 1
+    }
+]

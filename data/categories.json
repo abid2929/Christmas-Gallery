@@ -1,0 +1,50 @@
+[
+    {
+        "k": "ball",
+        "name": "Christmas Ball",
+        "group": "main",
+        "img": "p2.webp",
+        "order": 1,
+        "on": 1
+    },
+    {
+        "k": "star",
+        "name": "Star & Lights",
+        "group": "main",
+        "img": "p4.webp",
+        "order": 2,
+        "on": 1
+    },
+    {
+        "k": "santa",
+        "name": "Santa & Showpiece",
+        "group": "main",
+        "img": "p5.webp",
+        "order": 3,
+        "on": 1
+    },
+    {
+        "k": "wreath",
+        "name": "Wreath & Decor",
+        "group": "main",
+        "img": "n-wreath.webp",
+        "order": 4,
+        "on": 1
+    },
+    {
+        "k": "gift",
+        "name": "Gift & Stocking",
+        "group": "main",
+        "img": "n-giftset.webp",
+        "order": 5,
+        "on": 1
+    },
+    {
+        "k": "tree",
+        "name": "Christmas Tree",
+        "group": "main",
+        "img": "t-big.webp",
+        "order": 6,
+        "on": 1
+    }
+]

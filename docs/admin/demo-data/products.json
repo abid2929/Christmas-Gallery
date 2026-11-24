@@ -1,0 +1,230 @@
+{
+    "ball": [
+        {
+            "id": "cg1",
+            "n": "Christmas Ball Tube Box",
+            "b": "Christmas Gallery",
+            "i": "p1.webp",
+            "sd": "লম্বা টিউব বক্সে নীল-সিলভার রঙের Christmas ball সেট। ট্রি সাজানোর জন্য দারুণ।",
+            "sd_en": "Tall tube box with a set of blue and silver Christmas balls. Great for decorating the tree.",
+            "ft": 1,
+            "bs": 1,
+            "p": 650,
+            "o": 850,
+            "st": 12
+        },
+        {
+            "id": "cg2",
+            "n": "Pink & Silver Ball Set",
+            "b": "Christmas Gallery",
+            "i": "p2.webp",
+            "sd": "গোলাপি আর সিলভার রঙের ডিজাইন করা Christmas ball, সুন্দর গিফট বক্সে।",
+            "sd_en": "Pink and silver patterned Christmas balls in a pretty gift box.",
+            "nw": 1,
+            "p": 850,
+            "st": 30
+        },
+        {
+            "id": "cg3",
+            "n": "Golden Ball Gift Box",
+            "b": "Christmas Gallery",
+            "i": "p3.webp",
+            "sd": "ষড়ভুজ গিফট বক্সে গোল্ডেন আর লাল Christmas ball, রিবন সহ।",
+            "sd_en": "Golden and red Christmas balls in a hexagon gift box with ribbon.",
+            "p": 950,
+            "st": 8
+        },
+        {
+            "id": "cg11",
+            "n": "Glitter Christmas Ball",
+            "b": "Christmas Gallery",
+            "i": "n-glitterball.webp",
+            "sd": "গ্লিটার দেওয়া রঙিন বড় Christmas ball, আলোতে চকচক করে।",
+            "sd_en": "Big colourful glitter Christmas ball that shines in the light.",
+            "nw": 1,
+            "p": 450,
+            "st": 25
+        },
+        {
+            "id": "cg12",
+            "n": "Red & Gold Ball Set",
+            "b": "Christmas Gallery",
+            "i": "n-redgold.webp",
+            "sd": "লাল আর গোল্ডেন রঙের Christmas ball সেট, ট্রিতে দারুণ মানায়।",
+            "sd_en": "Set of red and golden Christmas balls, looks great on the tree.",
+            "p": 1200,
+            "st": 4
+        }
+    ],
+    "star": [
+        {
+            "id": "cg4",
+            "n": "Light-up Tree Top Star",
+            "b": "Christmas Gallery",
+            "i": "p4.webp",
+            "sd": "ট্রির মাথায় লাগানোর গোল্ডেন স্টার, ভেতরে আলো জ্বলে।",
+            "sd_en": "Golden tree top star that lights up from inside.",
+            "ft": 1,
+            "p": 150,
+            "o": 350,
+            "st": 12
+        },
+        {
+            "id": "cg7",
+            "n": "Star Fairy Lights (LED)",
+            "b": "Christmas Gallery",
+            "i": "n-lights.webp",
+            "sd": "তারার আকারের ছোট ছোট LED লাইট। ট্রি, জানালা বা দেয়ালে লাগালে ঝলমল করে।",
+            "sd_en": "Small star shaped LED lights. Sparkles on the tree, window or wall.",
+            "ft": 1,
+            "p": 350,
+            "st": 30
+        }
+    ],
+    "santa": [
+        {
+            "id": "cg5",
+            "n": "Dancing Santa Claus Doll",
+            "b": "Christmas Gallery",
+            "i": "p5.webp",
+            "sd": "গান বাজিয়ে নাচে এমন Santa doll। কয়েকটা ডিজাইন আছে (গিটার, ব্যাগ ইত্যাদি)।",
+            "sd_en": "A Santa doll that plays music and dances. Several designs (guitar, bag and more).",
+            "ft": 1,
+            "bs": 1,
+            "p": 950,
+            "st": 8
+        },
+        {
+            "id": "cg6",
+            "n": "Santa Hat",
+            "b": "Christmas Gallery",
+            "i": "p6.webp",
+            "sd": "নরম লাল কাপড় আর সাদা ফার দেওয়া Santa টুপি। বড় ছোট সবার জন্য।",
+            "sd_en": "Soft red Santa hat with white fur. Fits kids and adults.",
+            "p": 1250,
+            "st": 25
+        },
+        {
+            "id": "cg13",
+            "n": "Snowman Showpiece",
+            "b": "Christmas Gallery",
+            "i": "n-snowman.webp",
+            "sd": "সাদা ছোট Snowman শোপিস, লাল মাফলার আর কালো টুপি।",
+            "sd_en": "Small white snowman showpiece with red scarf and black hat.",
+            "p": 250,
+            "st": 4
+        }
+    ],
+    "wreath": [
+        {
+            "id": "cg8",
+            "n": "Green Christmas Wreath",
+            "b": "Christmas Gallery",
+            "i": "n-wreath.webp",
+            "sd": "পাইন পাতা, পাইন কোন আর গোল্ডেন ডেকোরেশন দেওয়া সবুজ রিদ। দরজায় ঝোলানোর জন্য।",
+            "sd_en": "Green wreath with pine leaves, pine cones and golden decorations. Made for the door.",
+            "p": 180,
+            "o": 380,
+            "st": 12
+        },
+        {
+            "id": "cg9",
+            "n": "Golden Glitter Wreath",
+            "b": "Christmas Gallery",
+            "i": "n-goldwreath.webp",
+            "sd": "গোল্ডেন-সিলভার গ্লিটার রিদ, ঘরের দেয়াল বা দরজা সাজানোর জন্য।",
+            "sd_en": "Gold and silver glitter wreath for the wall or door.",
+            "p": 550,
+            "st": 30
+        },
+        {
+            "id": "cg16",
+            "n": "Christmas Candle",
+            "b": "Christmas Gallery",
+            "i": "n-candles.webp",
+            "sd": "সাদা পিলার মোমবাতি, Christmas এর সন্ধ্যায় ঘরে উষ্ণ আলো।",
+            "sd_en": "White pillar candle for a warm Christmas evening glow.",
+            "p": 380,
+            "st": 8
+        }
+    ],
+    "gift": [
+        {
+            "id": "cg10",
+            "n": "Christmas Stocking",
+            "b": "Christmas Gallery",
+            "i": "n-stocking.webp",
+            "sd": "লাল ভেলভেট আর সাদা ফারের Christmas মোজা। গিফট রাখার জন্য ঝুলিয়ে রাখুন।",
+            "sd_en": "Red velvet Christmas stocking with white fur. Hang it up for gifts.",
+            "p": 650,
+            "st": 25
+        },
+        {
+            "id": "cg14",
+            "n": "Christmas Gift Box Set",
+            "b": "Christmas Gallery",
+            "i": "n-giftset.webp",
+            "sd": "রঙিন র‍্যাপিং করা গিফট বক্স সেট। ট্রির নিচে সাজাতে বা গিফট দিতে।",
+            "sd_en": "Set of colourfully wrapped gift boxes. For under the tree or as a gift.",
+            "p": 420,
+            "st": 4
+        },
+        {
+            "id": "cg15",
+            "n": "Black & Red Gift Box",
+            "b": "Christmas Gallery",
+            "i": "n-giftbox.webp",
+            "sd": "কালো বক্সে লাল রিবন, প্রিমিয়াম গিফট প্যাকিং।",
+            "sd_en": "Black box with red ribbon, premium gift packing.",
+            "p": 220,
+            "o": 420,
+            "st": 12
+        }
+    ],
+    "tree": [
+        {
+            "id": "cg17",
+            "n": "Table Top Christmas Tree",
+            "b": "Christmas Gallery",
+            "i": "t-small.webp",
+            "t": "ছোট",
+            "sd": "টেবিল, শেলফ বা অফিস ডেস্কের জন্য ছোট ট্রি।",
+            "sd_en": "Small tree for a table, shelf or office desk.",
+            "p": 1200,
+            "st": 30
+        },
+        {
+            "id": "cg18",
+            "n": "Medium Christmas Tree",
+            "b": "Christmas Gallery",
+            "i": "t-medium.webp",
+            "t": "মাঝারি",
+            "sd": "ড্রইং রুমের কোণার জন্য মাঝারি সাইজের ট্রি।",
+            "sd_en": "Medium size tree for a living room corner.",
+            "p": 2500,
+            "st": 8
+        },
+        {
+            "id": "cg19",
+            "n": "Big Christmas Tree",
+            "b": "Christmas Gallery",
+            "i": "t-big.webp",
+            "t": "বড়",
+            "sd": "বড় ঘর, অফিস বা দোকানের জন্য বড় ফ্লোর ট্রি।",
+            "sd_en": "Big floor tree for large rooms, offices or shops.",
+            "p": 4500,
+            "st": 25
+        },
+        {
+            "id": "cg20",
+            "n": "Snow White Christmas Tree",
+            "b": "Christmas Gallery",
+            "i": "t-snow.webp",
+            "t": "তুষার",
+            "sd": "সাদা তুষারের মতো দেখতে Christmas tree, সাথে বল আর লাইট দিয়ে সাজানো।",
+            "sd_en": "Snow white looking Christmas tree, decorated with balls and lights.",
+            "p": 5500,
+            "st": 4
+        }
+    ]
+}

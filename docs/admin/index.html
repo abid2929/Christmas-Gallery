@@ -1,96 +1,63 @@
-<!doctype html><html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Admin Demo | Christmas Gallery</title><link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
-:root{--red:#b3121f;--red2:#7d0a12;--green:#14713f;--gold:#f6c33b;--bg:#faf5f2;--line:#efe0e0;--muted:#776}
-*{box-sizing:border-box}body{margin:0;font-family:"Hind Siliguri",sans-serif;background:var(--bg);color:#2a1a1a;font-size:16px}
-a{color:inherit}
-header{background:linear-gradient(90deg,var(--red2),var(--red));color:#fff;position:sticky;top:0;z-index:5}
-.top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px;max-width:1150px;margin:auto}
-.top b{font-size:19px}.top a{color:#fff;text-decoration:none;font-weight:600;font-size:15px;background:rgba(255,255,255,.15);padding:6px 12px;border-radius:99px}
-nav{display:flex;gap:6px;padding:0 16px 10px;max-width:1150px;margin:auto;overflow-x:auto}
-nav a{color:#fff;text-decoration:none;padding:8px 16px;border-radius:99px;font-weight:600;white-space:nowrap;background:rgba(255,255,255,.1)}
-nav a.on{background:#fff;color:var(--red)}
-.pill{display:inline-grid;place-items:center;min-width:22px;height:22px;border-radius:99px;background:var(--gold);color:#5a0a10;font-size:13px;margin-left:4px;padding:0 6px}
-main{max-width:1150px;margin:auto;padding:18px 16px 60px}
-.flash{background:#e8f6ee;color:var(--green);font-weight:600;padding:10px 14px;border-radius:12px;margin-bottom:14px}
-.warn{background:#fff4d6;color:#7a5200;font-weight:600;padding:10px 14px;border-radius:12px;margin-bottom:14px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
-.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px}.stat small{color:var(--muted)}.stat b{display:block;font-size:24px}
-.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}.filters a{text-decoration:none;padding:6px 12px;border-radius:99px;background:#fff;border:1px solid var(--line);font-weight:600;font-size:14px}.filters a.on{background:var(--red);color:#fff;border-color:var(--red)}
-.ord{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:12px}
-.ord.new{border:2px solid var(--gold);background:#fffdf3}
-.oh{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}
-.oh b{font-size:18px}.oh small{color:var(--muted)}
-.og{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
-.og ul{margin:0;padding-left:18px}.og p{margin:2px 0}
-.tot{font-weight:700;color:var(--red);font-size:17px}
-.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center}
-.btn{display:inline-flex;align-items:center;gap:6px;border:0;cursor:pointer;font:inherit;font-weight:700;font-size:15px;padding:8px 14px;border-radius:10px;text-decoration:none;background:#eee;color:#333}
-.b-red{background:var(--red);color:#fff}.b-green{background:#25d366;color:#fff}.b-gold{background:var(--gold);color:#4a0a0e}.b-ghost{background:#fff;border:1px solid var(--line)}
-select,input,textarea{font:inherit;font-size:16px;padding:9px 11px;border:2px solid #ecd6d6;border-radius:10px;background:#fff;width:100%}
-select{width:auto}
-.st{font-size:13px;font-weight:700;padding:3px 10px;border-radius:99px;background:#eee}
-.st-new{background:var(--gold);color:#5a0a10}.st-confirmed{background:#dbeafe;color:#1d4ed8}.st-shipped{background:#ede9fe;color:#6d28d9}.st-delivered{background:#dcfce7;color:#15803d}.st-cancelled{background:#fee2e2;color:#b91c1c}
-table{width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--line)}
-td,th{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
-th{background:#fff4f4;font-size:14px}
-td img{width:56px;height:56px;object-fit:cover;border-radius:10px;background:#f6eaea}
-td input.pr{width:110px}
-.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:16px}
-.fg{display:grid;grid-template-columns:1fr 1fr;gap:12px}.fg .full{grid-column:1/-1}
-label{font-weight:600;font-size:15px;display:block;margin-bottom:4px}
-.chk{display:flex;gap:18px;flex-wrap:wrap}.chk label{display:flex;gap:6px;align-items:center;font-weight:600}.chk input{width:auto}
-.hint{color:var(--muted);font-size:14px;margin-top:3px}
-.empty{text-align:center;color:var(--muted);padding:40px;background:#fff;border-radius:16px;border:1px solid var(--line)}
-@media(max-width:760px){.stats{grid-template-columns:1fr 1fr}.og,.fg{grid-template-columns:1fr}
- table.resp thead{display:none}table.resp tr{display:grid;grid-template-columns:60px 1fr auto;gap:6px 10px;padding:10px;border-bottom:1px solid var(--line);align-items:center}table.resp td{border:0;padding:0}table.resp td:first-child{grid-row:span 3}table.resp td:nth-child(2),table.resp td:nth-child(4){grid-column:2/4}table.resp td:nth-child(3){grid-column:2;grid-row:3}table.resp td:nth-child(5){grid-column:3;grid-row:3}table.resp td:nth-child(4){grid-row:2}
- .top b{font-size:16px}.top b span{display:none}.top a{padding:6px 10px;font-size:14px;white-space:nowrap}}
-</style></head><body>
-<div style="background:#111;color:#fff;font-size:14px;text-align:center;padding:8px 12px">🔎 ডেমো Admin: এখানে পাসওয়ার্ড লাগে না আর সব তথ্য নমুনা। আসল সাইটে Admin পাসওয়ার্ড দিয়ে খোলে। <a href="../" style="color:#f6c33b;font-weight:700">← সাইটে ফিরে যান</a></div>
-<header>
- <div class="top"><b>🎄 Christmas Gallery<span> Admin</span></b><span style="display:flex;gap:6px"><a href="../" target="_blank">সাইট দেখুন</a><a href="#" onclick="alert('ডেমোতে লগআউট নেই');return false">লগআউট</a></span></div>
- <nav><a href="#orders" data-tab="orders">অর্ডার<span class="pill" id="npill"></span></a><a href="#products" data-tab="products">প্রোডাক্ট ও দাম</a><a href="#settings" data-tab="settings">সেটিংস</a></nav>
-</header>
-<main id="main"></main>
-<script>
-var PRODUCTS = [{"id":1,"type":"item","name":"Christmas Ball Tube Box","img":"img\/p1.webp","price":650,"size":"","stock":1},{"id":2,"type":"item","name":"Pink & Silver Ball Set","img":"img\/p2.webp","price":850,"size":"","stock":1},{"id":3,"type":"item","name":"Golden Ball Gift Box","img":"img\/p3.webp","price":950,"size":"","stock":1},{"id":4,"type":"item","name":"Light-up Tree Top Star","img":"img\/p4.webp","price":450,"size":"","stock":1},{"id":5,"type":"item","name":"Dancing Santa Claus Doll","img":"img\/p5.webp","price":1200,"size":"","stock":1},{"id":6,"type":"item","name":"Santa Hat","img":"img\/p6.webp","price":150,"size":"","stock":1},{"id":7,"type":"tree","name":"Table Top Christmas Tree","img":"img\/t1.webp","price":1200,"size":"ছোট","stock":1},{"id":8,"type":"tree","name":"Medium Christmas Tree","img":"img\/t1.webp","price":2500,"size":"মাঝারি","stock":1},{"id":9,"type":"tree","name":"Big Christmas Tree","img":"img\/t1.webp","price":4500,"size":"বড়","stock":1}];
-var ST={new:'নতুন',confirmed:'কনফার্ম',shipped:'পাঠানো হয়েছে',delivered:'ডেলিভারি হয়েছে',cancelled:'বাতিল'};
-var SAMPLE=[
- {code:'CG1003',name:'রাকিব হাসান (নমুনা)',phone:'01700000003',address:'বাড়ি ১২, রোড ৫, ধানমন্ডি, ঢাকা',area:'dhaka',note:'সন্ধ্যার পরে ডেলিভারি দিলে ভালো',items:[{name:'Medium Christmas Tree',size:'মাঝারি',qty:1,line:2500},{name:'Light-up Tree Top Star',size:'',qty:1,line:450}],delivery:70,total:3020,status:'new',created_at:'2026-11-24 18:40'},
- {code:'CG1002',name:'সুমাইয়া আক্তার (নমুনা)',phone:'01800000002',address:'আগ্রাবাদ, চট্টগ্রাম',area:'outside',note:'',items:[{name:'Dancing Santa Claus Doll',size:'',qty:2,line:2400}],delivery:130,total:2530,status:'confirmed',created_at:'2026-11-24 15:12'},
- {code:'CG1001',name:'জন ডি কস্টা (নমুনা)',phone:'01900000001',address:'মিরপুর ১০, ঢাকা',area:'dhaka',note:'',items:[{name:'Pink & Silver Ball Set',size:'',qty:2,line:1700},{name:'Santa Hat',size:'',qty:3,line:450}],delivery:70,total:2220,status:'delivered',created_at:'2026-11-23 20:05'}
-];
-function ls(k,d){try{return JSON.parse(localStorage.getItem(k)||'')||d}catch(e){return d}}
-function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
-var bn=function(n){return String(n).replace(/\d/g,function(d){return "০১২৩৪৫৬৭৮৯"[d]})};
-function orders(){var mine=ls('cg_demo_orders',[]),stat=ls('cg_demo_status',{});return mine.concat(SAMPLE).map(function(o){if(stat[o.code])o.status=stat[o.code];return o})}
-function prods(){var ov=ls('cg_demo_products',{});return PRODUCTS.map(function(p){var o=ov[p.id];return Object.assign({},p,o?{price:+o.price,stock:+o.stock}:{})})}
-function flash(m){var f=document.createElement('div');f.className='flash';f.textContent=m;document.getElementById('main').prepend(f);setTimeout(function(){f.remove()},2500)}
-function render(){
- var tab=(location.hash||'#orders').slice(1);
- document.querySelectorAll('nav a').forEach(function(a){a.className=a.dataset.tab===tab?'on':''});
- var os=orders(),nNew=os.filter(function(o){return o.status==='new'}).length;
- document.getElementById('npill').textContent=bn(nNew);document.getElementById('npill').style.display=nNew?'':'none';
- var m=document.getElementById('main'),h='';
- if(tab==='orders'){
-  var sales=os.filter(function(o){return o.status==='delivered'}).reduce(function(s,o){return s+o.total},0);
-  h+='<div class="stats"><div class="stat"><small>নতুন অর্ডার</small><b>'+bn(nNew)+'</b></div><div class="stat"><small>আজকের অর্ডার</small><b>'+bn(os.filter(function(o){return o.created_at.slice(0,10)===new Date().toISOString().slice(0,10)}).length)+'</b></div><div class="stat"><small>মোট অর্ডার</small><b>'+bn(os.length)+'</b></div><div class="stat"><small>ডেলিভারি হওয়া বিক্রি</small><b>৳ '+bn(sales)+'</b></div></div>';
-  os.forEach(function(o){
-   h+='<div class="ord '+(o.status==='new'?'new':'')+'"><div class="oh"><div><b>'+esc(o.code)+'</b> <span class="st st-'+o.status+'">'+ST[o.status]+'</span></div><small>'+esc(o.created_at)+'</small></div><div class="og"><div><p><b>'+esc(o.name)+'</b></p><p>📞 '+esc(o.phone)+'</p><p>📍 '+esc(o.address)+'</p><p><small>'+(o.area==='outside'?'ঢাকার বাইরে':'ঢাকার ভিতরে')+'</small></p>'+(o.note?'<p>📝 '+esc(o.note)+'</p>':'')+'</div><div><ul>'+o.items.map(function(i){return '<li>'+esc(i.name)+(i.size?' ('+esc(i.size)+')':'')+' × '+i.qty+' = ৳'+i.line+'</li>'}).join('')+'</ul><p>ডেলিভারি: ৳'+o.delivery+'</p><p class="tot">মোট: ৳'+o.total+'</p></div></div>'+
-   '<div class="acts"><a class="btn b-red" href="tel:'+esc(o.phone)+'">কল</a><a class="btn b-green" href="#" onclick="return false">WhatsApp</a><select data-code="'+esc(o.code)+'">'+Object.keys(ST).map(function(k){return '<option value="'+k+'"'+(k===o.status?' selected':'')+'>'+ST[k]+'</option>'}).join('')+'</select><button class="btn b-gold" data-save="'+esc(o.code)+'">সেভ</button></div></div>';
-  });
- } else if(tab==='products'){
-  h+='<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"><a class="btn b-red" href="#" onclick="alert(\'আসল Admin এ এখান থেকে ছবি দিয়ে নতুন প্রোডাক্ট যোগ করা যায়।\');return false">+ নতুন আইটেম</a><a class="btn b-green" href="#" onclick="alert(\'আসল Admin এ এখান থেকে নতুন ট্রি যোগ করা যায়।\');return false">+ নতুন Christmas Tree</a></div>';
-  h+='<table class="resp"><thead><tr><th>ছবি</th><th>নাম</th><th>দাম (৳)</th><th>অবস্থা</th><th></th></tr></thead><tbody>'+prods().map(function(p){return '<tr><td><img src="../'+esc(p.img)+'" alt=""></td><td><b>'+esc(p.name)+'</b><br><small>'+(p.type==='tree'?'🎄 Tree':'আইটেম')+(p.size?' · '+esc(p.size):'')+'</small></td><td><input class="pr" data-pid="'+p.id+'" inputmode="numeric" value="'+p.price+'"></td><td><label style="display:flex;gap:6px;align-items:center;font-weight:600"><input type="checkbox" data-stock="'+p.id+'" style="width:auto"'+(p.stock?' checked':'')+'> স্টকে আছে</label></td><td></td></tr>'}).join('')+'</tbody></table>';
-  h+='<p><button class="btn b-gold" id="saveprices">সব দাম একসাথে সেভ করুন</button> <span class="hint">ডেমোতে সেভ করলে এই ব্রাউজারে সাইটের দাম বদলে যাবে, গিয়ে দেখুন।</span></p>';
- } else {
-  h+='<div class="card"><h2 style="margin-top:0">সেটিংস</h2><div class="fg"><div><label>ফোন নম্বর</label><input value="01779-443155" disabled></div><div><label>WhatsApp নম্বর</label><input value="8801779443155" disabled></div><div><label>ঢাকার ভিতরে ডেলিভারি চার্জ (৳)</label><input value="70" disabled></div><div><label>ঢাকার বাইরে ডেলিভারি চার্জ (৳)</label><input value="130" disabled></div><div class="full"><label>নতুন Admin পাসওয়ার্ড</label><input type="password" disabled placeholder="আসল Admin এ এখানে পাসওয়ার্ড বদলানো যায়"></div></div><p class="hint">ডেমোতে সেটিংস বদলানো বন্ধ।</p></div>';
- }
- m.innerHTML=h;
-}
-document.addEventListener('click',function(e){
- var s=e.target.closest('[data-save]');if(s){var st=ls('cg_demo_status',{});st[s.dataset.save]=document.querySelector('select[data-code="'+s.dataset.save+'"]').value;lsSet('cg_demo_status',st);render();flash('স্ট্যাটাস আপডেট হয়েছে');return}
- if(e.target.id==='saveprices'){var ov={};document.querySelectorAll('[data-pid]').forEach(function(i){var id=i.dataset.pid;ov[id]={price:Math.max(0,parseInt(i.value.replace(/[০-৯]/g,function(d){return "০১২৩৪৫৬৭৮৯".indexOf(d)}),10)||0),stock:document.querySelector('[data-stock="'+id+'"]').checked?1:0}});lsSet('cg_demo_products',ov);render();flash('দাম সেভ হয়েছে');}
-});
-addEventListener('hashchange',render);render();
-</script>
-</body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Christmas Gallery Admin</title>
+<link rel="icon" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css?v=2.2">
+</head>
+<body>
+<div class="demo" id="demoBar" hidden>DEMO ADMIN: opens without a password and uses sample orders. Changes are saved only in this browser. On your real site (cPanel) the admin needs a login.</div>
+
+<section id="login" class="login-wrap" hidden>
+ <form class="login" id="loginForm">
+  <img src="../img/logo-mark.webp" alt="Christmas Gallery">
+  <h2>Christmas Gallery Admin</h2>
+  <p id="loginHint">Sign in to manage your shop</p>
+  <div id="setupName" hidden><input name="name" placeholder="Your name"></div>
+  <input name="user" placeholder="Username" autocomplete="username" required>
+  <input name="pass" type="password" placeholder="Password" autocomplete="current-password" required minlength="8">
+  <button class="btn" style="width:100%">Sign in</button>
+  <div class="err" id="loginErr"></div>
+ </form>
+</section>
+
+<div id="app" class="app" hidden>
+ <aside class="side" id="side">
+  <a class="brand" href="#dashboard"><img src="../img/logo-mark.webp" alt=""><span><b class="notr">Christmas <em>Gallery</em></b><small>Christmas Shop Admin Panel</small></span></a>
+  <nav id="nav"></nav>
+  <div class="me"><div><b id="meName">Admin</b><small id="meRole">Super Admin</small></div><button class="ic" title="Log out" onclick="logout()"><svg viewBox="0 0 24 24"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 17l-5-5 5-5M5 12h11"/></svg></button></div>
+ </aside>
+ <div class="shade" onclick="document.body.classList.remove('nav-open')"></div>
+ <div class="main">
+  <header class="topbar">
+   <button class="ic menu" onclick="document.body.classList.toggle('nav-open')" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+   <h1 id="pageTitle">Dashboard</h1>
+   <button class="lang-btn" id="langBtn" onclick="setLang(PV_LANG==='bn'?'en':'bn')" title="Language">EN</button>
+   <button class="ai-btn" onclick="askAI()"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18 9.5l-4.2 1.8L12 16l-1.8-4.7L6 9.5l4.2-1.8z"/></svg>Ask AI<i></i></button>
+   <div class="bell-wrap"><button class="ic bell" onclick="toggleBell()" aria-label="Notifications"><svg viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 1 1 12 0v5l2 2H4zM10 20a2 2 0 0 0 4 0"/></svg><b id="bellN" hidden>0</b></button><div class="bell-pop" id="bellPop" hidden></div></div>
+  </header>
+  <main id="view" class="view"></main>
+  <footer class="foot">© <span id="yr"></span> <b>Christmas Gallery Admin</b>. All rights reserved.<span>Developed by <b>Abid Islam</b> · Boostnix Media</span></footer>
+ </div>
+</div>
+
+<nav class="tabbar" id="tabbar">
+ <a href="#dashboard" data-r="dashboard"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/></svg><span>Home</span></a>
+ <a href="#orders" data-r="orders"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/></svg><span>Orders</span><b id="tbN" hidden></b></a>
+ <a href="#product/new" class="add" data-r="product"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><span>Add</span></a>
+ <a href="#products" data-r="products"><svg viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5 9 5 9-5zM3 8v8l9 5 9-5V8M12 13v8"/></svg><span>Products</span></a>
+ <a href="#" onclick="document.body.classList.toggle('nav-open');return false"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span>More</span></a>
+</nav>
+<div class="modal" id="modal" hidden><div class="modal-bg" onclick="closeModal()"></div><div class="modal-box" id="modalBox"></div></div>
+<div class="toast" id="toast"></div>
+<script src="bn.js?v=2.2"></script>
+<script>document.getElementById("langBtn").textContent=PV_LANG==="bn"?"EN":"বাংলা"</script>
+<script src="admin.js?v=2.2"></script>
+<script src="admin2.js?v=2.2"></script>
+</body>
+</html>

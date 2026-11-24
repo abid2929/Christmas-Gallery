@@ -1,0 +1,54 @@
+{
+    "store": {
+        "name": "Christmas Gallery",
+        "tagline": "সব Christmas আইটেম এক জায়গায়",
+        "phone": "01779-443155",
+        "whatsapp": "8801779443155",
+        "email": "",
+        "address": "",
+        "facebook": "",
+        "hours": ""
+    },
+    "delivery": {
+        "inside": 70,
+        "outside": 130,
+        "free_over": 0,
+        "note": "ঢাকায় ১-২ দিন, ঢাকার বাইরে ২-৪ দিন"
+    },
+    "payment": {
+        "cod": 1,
+        "bkash": "",
+        "nagad": "",
+        "note": "Send Money করে নিচে Transaction ID লিখুন।"
+    },
+    "cms": {
+        "ticker": [
+            "All Christmas Decorate Items Here"
+        ],
+        "announce": "",
+        "deal": {
+            "id": "",
+            "ends": ""
+        },
+        "about": "All Christmas Decorate Items Here. Christmas ball, tree star, Santa doll, lights, wreath আর Christmas tree সব এক জায়গায়।",
+        "products_title": "আমাদের Christmas আইটেম",
+        "products_sub": "ছবিতে ক্লিক করলে বড় করে দেখবেন। পছন্দ হলে কার্টে নিয়ে অর্ডার করুন, অথবা WhatsApp এ।",
+        "trees_title": "৪ রকম Christmas Tree",
+        "trees_sub": "আপনার ঘরের জায়গা অনুযায়ী সাইজ বেছে নিন",
+        "count_title": "বড়দিন আসতে আর বাকি",
+        "count_text": "স্টক শেষ হওয়ার আগেই আপনার সাজানোর জিনিস অর্ডার করে রাখুন।",
+        "contact_title": "যেকোনো প্রশ্ন বা অর্ডারের জন্য",
+        "contact_text": "দাম, স্টক বা ডেলিভারি জানতে সরাসরি মেসেজ বা কল করুন।",
+        "hero_caption": "সব Christmas সাজানোর জিনিস এক জায়গায়"
+    },
+    "seo": {
+        "title": "Christmas Gallery | সব Christmas Decoration এক জায়গায়",
+        "desc": "Christmas ball, tree star, dancing Santa, fairy lights, wreath, gift box আর Christmas tree। ক্যাশ অন ডেলিভারিতে সারা দেশে অর্ডার করুন।",
+        "keys": "christmas decoration bangladesh, christmas tree, christmas ball, santa, fairy lights",
+        "ga": "",
+        "gsv": ""
+    },
+    "pixel": {
+        "id": ""
+    }
+}
