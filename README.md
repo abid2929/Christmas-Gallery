@@ -1,6 +1,6 @@
 # 🎄 Christmas Gallery
 
-Online shop for **Christmas Gallery**: Christmas ball sets, light-up tree top star, dancing Santa dolls, Santa hats and 3 sizes of Christmas trees.
+Online shop for **Christmas Gallery**: Christmas ball sets, light-up tree top star, dancing Santa dolls, Santa hats and fairy lights, wreaths, stockings, gift boxes, candles and 4 kinds of Christmas trees.
 WhatsApp / call: **01779-443155**
 
 **Live demo:** https://abid2929.github.io/Christmas-Gallery/ (demo admin: https://abid2929.github.io/Christmas-Gallery/admin/)
