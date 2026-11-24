@@ -703,11 +703,6 @@ footer .fbrand{font-family:"Playfair Display",serif;font-size:26px;color:#fff}
 <?php $WAIC = '<svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2m0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2m4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4a.5.5 0 0 0 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3"/></svg>';
 $PHIC = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>'; ?>
 <?php if (defined('CG_DEMO')): ?><div style="background:#111;color:#fff;font-size:14px;text-align:center;padding:8px 12px"><?= bi('🔎 এটা ডেমো ভার্সন (দামগুলো নমুনা)। অর্ডার দিয়ে দেখুন, তারপর Admin প্যানেলও দেখুন।', '🔎 This is a demo (sample prices). Try an order, then look at the Admin panel.') ?> <a href="admin/" style="color:#f6c33b;font-weight:700;text-decoration:underline">Admin →</a></div><?php endif; ?>
-<div class="strip"><div class="wrap">
-  <span>🎄 <?= $T('notice') ?> <span class="dt">· 🚚 <?= $T('delivery_time') ?></span></span>
-  <a href="tel:<?= h($tel) ?>" data-contact><?= $PHIC ?><?= h($phone) ?></a>
-</div></div>
-
 <header>
  <div class="wrap nav">
   <a class="brand" href="#top">
