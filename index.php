@@ -729,6 +729,36 @@ header .nav{animation:cgDown .7s cubic-bezier(.2,.7,.2,1) both}
 .devby{text-align:center;white-space:nowrap;font-size:12px;letter-spacing:.3px;opacity:.85;margin-top:8px;font-family:Poppins,sans-serif}
 .devby b{font-weight:600;color:#e8c77a}.devby span{margin:0 4px}
 .devby a{color:#e8c77a;text-decoration:none;font-weight:600}.devby a:hover{text-decoration:underline}
+
+/* WhatsApp real brand colour everywhere (owner Nov 25) */
+.fab,.fab:hover{background:#25D366!important;color:#fff!important}
+.btn-wa:not(.btn-sq),#mt .btn-wa,.hero .btn-wa{background:#25D366!important;color:#fff!important;border:0!important;font-weight:600}
+.btn-wa:not(.btn-sq):hover{background:#1ebe5b!important}
+.btn-wa.btn-sq{background:#25D366!important;color:#fff!important;border:0!important}
+.hbtn{border-color:#25D366;color:#128c4a}.hbtn:hover{background:#25D366;color:#fff;border-color:#25D366}
+/* wishlist heart on cards */
+.card .img{position:relative}
+.wish{position:absolute;top:10px;right:10px;z-index:3;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.92);display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.15);transition:transform .2s}
+.wish svg{fill:none;stroke:#8a1020;stroke-width:2}
+.wish.on svg{fill:#c8102e;stroke:#c8102e}.wish:active{transform:scale(.88)}
+.wishhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 14px;padding:12px 16px;border-radius:14px;background:#fff;border:1px solid #ecdcc8}
+.wishhead[hidden]{display:none}.wishhead b{color:#8a1020;font-size:16px}
+.wishhead button{border:1px solid #8a1020;background:transparent;color:#8a1020;border-radius:30px;padding:6px 14px;font:inherit;font-size:13px;cursor:pointer}
+/* phone bottom tab bar */
+.tabbar{display:none}
+@media (max-width:760px){
+ .tabbar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:70;background:rgba(255,252,247,.97);backdrop-filter:blur(10px);border-top:1px solid #ecdcc8;box-shadow:0 -6px 20px rgba(58,6,16,.08);padding:7px 4px calc(7px + env(safe-area-inset-bottom))}
+ .tabbar a{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;color:#5b4a4c;font-size:11px;font-weight:600;letter-spacing:.3px;text-decoration:none;padding:2px 0}
+ .tabbar svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+ .tabbar svg.f{fill:currentColor;stroke:none}
+ .tabbar a.on,.tabbar a:active{color:#8a1020}
+ .tabbar a.on:before{content:"";position:absolute;top:-7px;width:26px;height:3px;border-radius:0 0 3px 3px;background:#c9a24e}
+ .tabbar i{position:absolute;top:-3px;left:calc(50% + 6px);min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:#8a1020;color:#fff;font-size:10px;font-style:normal;display:none;place-items:center;line-height:1}
+ .tabbar .tb-wa{color:#0f7a3a}
+ .tabbar .tb-wa svg{width:30px;height:30px;padding:5px;margin-top:-4px;border-radius:50%;background:#25D366;color:#fff;box-shadow:0 4px 12px rgba(37,211,102,.45)}
+ .fab{display:none!important}
+ body{padding-bottom:calc(66px + env(safe-area-inset-bottom))}
+}
 </style>
 </head>
 <body>
@@ -817,6 +847,7 @@ $PHIC = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" s
  <div class="wrap">
   <div class="head"><span class="xmas">The Collection</span><?= $T('cms_products_title', 'h2') ?><?= $T('cms_products_sub', 'p') ?></div>
   <div class="fbar">
+   <div class="wishhead" id="wishhead" hidden><b><?= bi('আমার পছন্দের তালিকা', 'My wishlist') ?></b><button type="button" data-wishoff><?= bi('সব প্রোডাক্ট দেখুন', 'See all products') ?></button></div>
    <div class="chips" id="chips"></div>
    <div class="ftools"><input id="q" type="search" placeholder="খুঁজুন..." data-en-ph="Search..." aria-label="Search"><select id="sort" aria-label="Sort"><option value="" data-en="Popular">জনপ্রিয়</option><option value="new" data-en="Newest">নতুন আগে</option><option value="lo" data-en="Price: low to high">দাম: কম থেকে বেশি</option><option value="hi" data-en="Price: high to low">দাম: বেশি থেকে কম</option></select></div>
   </div>
@@ -897,6 +928,13 @@ $PHIC = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" s
  </div>
 </footer>
 
+<nav class="tabbar" aria-label="<?= $EN ? 'Shortcuts' : 'শর্টকাট' ?>">
+ <a href="#top" data-tab="home"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><?= bi('হোম', 'Home') ?></a>
+ <a href="#products" data-tab="shop"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg><?= bi('শপ', 'Shop') ?></a>
+ <a href="#products" data-tab="wish" data-wishtab><svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.2-9C1.5 8 3.6 4.8 7 4.8c2 0 3.3 1 5 2.9 1.7-1.9 3-2.9 5-2.9 3.4 0 5.5 3.2 4.2 6.7-1.7 4.4-9.2 9-9.2 9z"/></svg><?= bi('পছন্দ', 'Wishlist') ?><i class="wish-n">০</i></a>
+ <a href="#" data-cart data-tab="bag" onclick="return false"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1.2 12.1a1 1 0 0 1-1 .9H7.2a1 1 0 0 1-1-.9z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><?= bi('ব্যাগ', 'Bag') ?><i class="cart-n">০</i></a>
+ <a class="tb-wa" href="https://wa.me/<?= h($wa) ?>?text=Christmas%20Gallery%20theke%20order%20korte%20chai" target="_blank" rel="noopener" data-contact><svg viewBox="0 0 24 24" class="f"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2m0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2m4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4a.5.5 0 0 0 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3"/></svg><span>WhatsApp</span></a>
+</nav>
 <a class="fab" href="https://wa.me/<?= h($wa) ?>?text=Christmas%20Gallery%20theke%20order%20korte%20chai" target="_blank" rel="noopener" aria-label="WhatsApp" data-contact><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2m0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2m4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4a.5.5 0 0 0 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3"/></svg></a>
 
 <div class="drawer" id="drawer"><div class="dpanel" role="dialog" aria-modal="true" aria-labelledby="dtitle">
@@ -1000,11 +1038,19 @@ function buyBtns(p){
 function card(p,tree){
  var opt=[];if(p.sizes.length)opt.push(L(num(p.sizes.length)+'টি সাইজ',p.sizes.length+' sizes'));if(p.colors.length)opt.push(L(num(p.colors.length)+'টি কালার',p.colors.length+' colours'));
  return '<article class="card" data-id="'+p.id+'">'+
-  '<div class="img '+(p.cls==='contain'?'contain ':'')+(p.cls&&p.cls!=='contain'?esc(p.cls):'')+'" data-open="'+p.id+'"><img src="'+esc(p.th||p.img)+'" alt="'+esc(p.name)+'" loading="lazy" width="600" height="600">'+
+  '<div class="img '+(p.cls==='contain'?'contain ':'')+(p.cls&&p.cls!=='contain'?esc(p.cls):'')+'" data-open="'+p.id+'">'+wishBtn(p)+'<img src="'+esc(p.th||p.img)+'" alt="'+esc(p.name)+'" loading="lazy" width="600" height="600">'+
   badges(p,tree)+(p.size?'<span class="size">'+esc(p.size)+'</span>':'')+(!p.stock?'<span class="soldout">'+L('স্টক শেষ','Out of stock')+'</span>':'')+'</div>'+
   '<div class="body"><h3>'+esc(p.name)+'</h3>'+(p.rc?'<div class="rc">'+stars(p.rating)+' ('+num(p.rc)+')</div>':'')+'<p class="desc">'+esc(desc(p))+'</p>'+(opt.length?'<span class="opts">'+opt.join(' · ')+'</span>':'')+lowq(p)+
   '<div class="row">'+priceHTML(p)+'</div>'+
   buyBtns(p)+'</div></article>'}
+
+/* ===== wishlist (saved in this browser) ===== */
+var WISH=[],WMODE=false;try{WISH=JSON.parse(localStorage.getItem('cg_wish')||'[]').map(String)}catch(e){}
+function isW(id){return WISH.indexOf(String(id))>-1}
+function wishBtn(p){return '<button class="wish'+(isW(p.id)?' on':'')+'" data-wish="'+p.id+'" aria-label="'+L('পছন্দে রাখুন','Save to wishlist')+'"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 21s-7.5-4.6-9.5-9.2C1 8.2 3.3 4.5 7 4.5c2 0 3.4 1.1 5 3 1.6-1.9 3-3 5-3 3.7 0 6 3.7 4.5 7.3C19.5 16.4 12 21 12 21z"/></svg></button>'}
+function renderWishN(){document.querySelectorAll('.wish-n').forEach(function(e){e.textContent=num(WISH.length);e.style.display=WISH.length?'grid':'none'})}
+function toggleWish(id){id=String(id);var i=WISH.indexOf(id);if(i>-1)WISH.splice(i,1);else WISH.push(id);try{localStorage.setItem('cg_wish',JSON.stringify(WISH))}catch(e){}
+ document.querySelectorAll('[data-wish="'+id+'"]').forEach(function(b){b.classList.toggle('on',i<0)});renderWishN();if(WMODE)renderGrids()}
 
 /* ===== listing, filters ===== */
 var CAT='',Q='',SORT='';
@@ -1018,10 +1064,12 @@ function sortList(a){a=a.slice();
 function renderGrids(){
  var q=Q.trim().toLowerCase(),filtered=!!(CAT||q);
  var src=filtered?PRODUCTS.concat(TREES):PRODUCTS;
- var list=src.filter(function(p){return (!CAT||p.cat===CAT)&&(!q||(p.name+' '+p.desc+' '+p.desc_en+' '+p.badge).toLowerCase().indexOf(q)>-1)});
- document.getElementById('pgrid').innerHTML=sortList(list).map(function(p){return card(p,p.type==='tree')}).join('')||'<div class="noitems">'+L('কিছু পাওয়া যায়নি। অন্য কিছু লিখে খুঁজুন।','Nothing found. Try another word.')+'</div>';
+ if(WMODE)src=PRODUCTS.concat(TREES);
+ var list=src.filter(function(p){return (!WMODE||isW(p.id))&&(!CAT||p.cat===CAT)&&(!q||(p.name+' '+p.desc+' '+p.desc_en+' '+p.badge).toLowerCase().indexOf(q)>-1)});
+ document.getElementById('pgrid').innerHTML=sortList(list).map(function(p){return card(p,p.type==='tree')}).join('')||'<div class="noitems">'+(WMODE?L('পছন্দের তালিকা খালি। প্রোডাক্টের ছবিতে ♡ চাপলে এখানে জমা থাকবে।','Your wishlist is empty. Tap ♡ on a product to save it.'):L('কিছু পাওয়া যায়নি। অন্য কিছু লিখে খুঁজুন।','Nothing found. Try another word.'))+'</div>';
+ var wh=document.getElementById('wishhead');if(wh)wh.hidden=!WMODE;
  document.getElementById('tgrid').innerHTML=sortList(TREES).map(function(p){return card(p,true)}).join('');
- document.getElementById('trees').style.display=TREES.length&&!filtered?'':'none';
+ document.getElementById('trees').style.display=TREES.length&&!filtered&&!WMODE?'':'none';
  var fs=document.getElementById('flash');if(fs){var fl=PRODUCTS.concat(TREES).filter(function(p){return p.fl&&p.price&&p.stock});fs.hidden=!fl.length;document.getElementById('fgrid').innerHTML=fl.map(function(p){return card(p,p.type==='tree')}).join('')}
 }
 
@@ -1035,7 +1083,8 @@ function addCart(id,q,s,c){var p=ALL[id];s=s||'';c=c||'';var it=CART.find(functi
  px('AddToCart',{content_ids:[String(id)],content_name:p.name,content_type:'product',value:p.price*q,currency:'BDT'})}
 function sub(){return CART.reduce(function(s,c){return s+ALL[c.id].price*c.qty},0)}
 function delivery(){var s=sub();if(CFG.free>0&&s>=CFG.free)return 0;return area()==='outside'?CFG.do:CFG.dd}
-function renderCart(){
+function tabOn(k){document.querySelectorAll('.tabbar [data-tab]').forEach(function(a){a.classList.toggle('on',a.dataset.tab===k)})}
+function renderCart(){renderWishN();
  var n=CART.reduce(function(s,c){return s+c.qty},0);
  document.querySelectorAll('.cart-n').forEach(function(e){e.textContent=num(n);e.style.display=n?'grid':'none'});
  var box=document.getElementById('citems');
@@ -1094,7 +1143,11 @@ document.getElementById('rform').addEventListener('submit',function(e){e.prevent
 /* ===== clicks ===== */
 document.addEventListener('click',function(e){
  var t=e.target;
- var ch=t.closest('[data-chip]');if(ch){CAT=ch.dataset.chip==='0'?'':ch.dataset.chip;renderChips();renderGrids();return}
+ var wb=t.closest('[data-wish]');if(wb){e.preventDefault();toggleWish(wb.dataset.wish);return}
+ if(t.closest('[data-wishtab]')){e.preventDefault();WMODE=true;CAT='';Q='';document.getElementById('q').value='';renderChips();renderGrids();tabOn('wish');document.getElementById('products').scrollIntoView({behavior:'smooth'});return}
+ if(t.closest('[data-wishoff]')){WMODE=false;renderGrids();tabOn('');return}
+ var tb=t.closest('.tabbar a[href^="#"]');if(tb&&WMODE){WMODE=false;renderGrids()}
+ var ch=t.closest('[data-chip]');if(ch){WMODE=false;CAT=ch.dataset.chip==='0'?'':ch.dataset.chip;renderChips();renderGrids();return}
  var ct=t.closest('[data-cat]');if(ct){CAT=ct.dataset.cat;Q='';document.getElementById('q').value='';renderChips();renderGrids()}
  var th=t.closest('[data-th]');if(th){document.getElementById('mimg').src=th.dataset.th;document.querySelectorAll('#thumbs img').forEach(function(i){i.classList.toggle('on',i===th)});return}
  var ps=t.closest('[data-ps]');if(ps){MP.s=ps.dataset.ps;renderModal();return}

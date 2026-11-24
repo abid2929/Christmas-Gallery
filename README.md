@@ -39,7 +39,8 @@ Premium red and gold online shop for Christmas balls, tree stars, fairy lights, 
 - Bangla first, one tap to switch to English
 - Product details with photo gallery, sizes and colours
 - Cart and order with the full cart sent straight to WhatsApp
-- Customer reviews
+- Customer reviews and a ♡ wishlist
+- Phone bottom tab bar: Home, Shop, Wishlist, Bag, WhatsApp
 - Price not set yet? It shows "দাম জানতে মেসেজ করুন" (message us for the price)
 - Fast and search friendly: Lighthouse mobile Performance 96, Accessibility 100, Best Practices 100, SEO 100
 
