@@ -83,6 +83,6 @@ Product photos are from [Unsplash](https://unsplash.com) (free licence), for exa
 
 <div align="center">
 
-Designed & developed by **Abid Islam** & **Boostnix Media**
+Designed & developed by [**Abid Islam**](https://www.linkedin.com/in/abid-islam-a926ab2b5/) · [**Boostnix Media**](https://boostnixmedia.com/)
 
 </div>

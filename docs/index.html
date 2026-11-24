@@ -632,9 +632,6 @@ header .nav{animation:cgDown .7s cubic-bezier(.2,.7,.2,1) both}
 .slide{animation:none!important}
 @media (max-width:760px){.hero .slide-grid .btns{justify-content:flex-start!important}}
 
-.devby{text-align:center;white-space:nowrap;font-size:12px;letter-spacing:.3px;opacity:.85;margin-top:8px;font-family:Poppins,sans-serif}
-.devby b{font-weight:600;color:#e8c77a}.devby span{margin:0 4px}
-.devby a{color:#e8c77a;text-decoration:none;font-weight:600}.devby a:hover{text-decoration:underline}
 
 /* WhatsApp real brand colour everywhere (owner Nov 25) */
 .fab,.fab:hover{background:#25D366!important;color:#fff!important}
@@ -665,6 +662,12 @@ header .nav{animation:cgDown .7s cubic-bezier(.2,.7,.2,1) both}
  .fab{display:none!important}
  body{padding-bottom:calc(66px + env(safe-area-inset-bottom))}
 }
+
+/* developer credit, same as Kazi Office footer */
+.sig{margin:12px auto 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:5px 11px;font-size:12px;line-height:1.4;color:#d9bfc3;text-align:center}
+.sig a{display:inline-flex;align-items:center;gap:5px;color:#f3e6d0;font-weight:600;text-decoration:none;transition:color .2s}.sig a:hover{color:#fff;text-decoration:underline}
+.sig .sg-i{width:15px;height:15px;border-radius:3px;display:grid;place-items:center;flex-shrink:0;color:#fff;font:700 9.5px/1 system-ui,sans-serif}
+.sig .sg-li{background:#0a66c2}.sig .sg-bx{background:linear-gradient(135deg,#ff8a3d,#f04e23)}
 </style>
 </head>
 <body>
@@ -812,7 +815,8 @@ header .nav{animation:cgDown .7s cubic-bezier(.2,.7,.2,1) both}
    <div><h3 data-en="Contact">যোগাযোগ</h3><a href="tel:+8801779443155" data-contact>📞 01779-443155</a><a href="https://wa.me/8801779443155" target="_blank" rel="noopener" data-contact>💬 WhatsApp</a></div>
   </div>
   <div class="copy">© <span id="yr">2026</span> Christmas Gallery. Merry Christmas! 🎄</div>
-  <div class="devby">Developed by <b>Abid Islam</b> <span>·</span> <a href="https://boostnixmedia.com" target="_blank" rel="noopener">Boostnix Media</a></div>
+  <div class="sig"><span data-en="Designed &amp; developed by">ডিজাইন ও ডেভেলপমেন্ট:</span>   <a href="https://www.linkedin.com/in/abid-islam-a926ab2b5/" target="_blank" rel="noopener author"><span class="sg-i sg-li"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.1c0-1.22-.02-2.78-1.7-2.78-1.7 0-1.96 1.33-1.96 2.7V21h-4z"/></svg></span>Abid Islam</a>
+   <a href="https://boostnixmedia.com/" target="_blank" rel="noopener"><span class="sg-i sg-bx">B</span>Boostnix Media</a></div>
  </div>
 </footer>
 
