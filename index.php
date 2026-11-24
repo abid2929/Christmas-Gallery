@@ -697,6 +697,27 @@ footer .fbrand{font-family:"Playfair Display",serif;font-size:26px;color:#fff}
  .cat>small{display:none}
 }
 @media (min-width:761px){.cat .c{aspect-ratio:1/1.1!important}#cats .head .xmas{display:none}}
+/* ===== first-screen entrance ===== */
+@keyframes cgUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes cgZoom{from{transform:scale(1.12)}to{transform:scale(1)}}
+@keyframes cgDown{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+@keyframes cgShine{0%{background-position:-160% 0}100%{background-position:260% 0}}
+header .nav{animation:cgDown .7s cubic-bezier(.2,.7,.2,1) both}
+.hero .slide.on .pic img{animation:cgZoom 6s cubic-bezier(.2,.6,.2,1) both}
+.hero .slide.on .tag{animation:cgUp .7s .15s cubic-bezier(.2,.7,.2,1) both}
+.hero .slide.on h1,.hero .slide.on h2{animation:cgUp .8s .28s cubic-bezier(.2,.7,.2,1) both}
+.hero .slide.on .pill{animation:cgUp .7s .45s cubic-bezier(.2,.7,.2,1) both}
+.hero .slide.on p{animation:cgUp .7s .55s cubic-bezier(.2,.7,.2,1) both}
+.hero .slide.on .btns{animation:cgUp .7s .65s cubic-bezier(.2,.7,.2,1) both}
+.hero .pill{background:linear-gradient(110deg,#fff 40%,#fdf1d6 50%,#fff 60%);background-size:250% 100%;animation:cgShine 3.2s 1.4s ease-in-out infinite}
+.hero .slide.on .pill{animation:cgUp .7s .45s cubic-bezier(.2,.7,.2,1) both,cgShine 3.2s 1.4s ease-in-out infinite}
+#cats .head{animation:cgUp .8s .5s both}
+#cats .cat{animation:cgUp .7s both}
+#cats .cat:nth-child(1){animation-delay:.6s}#cats .cat:nth-child(2){animation-delay:.68s}#cats .cat:nth-child(3){animation-delay:.76s}
+#cats .cat:nth-child(4){animation-delay:.84s}#cats .cat:nth-child(5){animation-delay:.92s}#cats .cat:nth-child(6){animation-delay:1s}
+#cats .cat .c img{transition:transform .6s cubic-bezier(.2,.7,.2,1)}#cats .cat:hover .c img{transform:scale(1.08)}
+.slide{animation:none!important}
+@media (max-width:760px){.hero .slide-grid .btns{justify-content:flex-start!important}}
 </style>
 </head>
 <body>
