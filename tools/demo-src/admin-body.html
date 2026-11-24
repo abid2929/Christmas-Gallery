@@ -1,0 +1,51 @@
+<body>
+<div style="background:#111;color:#fff;font-size:14px;text-align:center;padding:8px 12px">🔎 ডেমো Admin: এখানে পাসওয়ার্ড লাগে না আর সব তথ্য নমুনা। আসল সাইটে Admin পাসওয়ার্ড দিয়ে খোলে। <a href="../" style="color:#f6c33b;font-weight:700">← সাইটে ফিরে যান</a></div>
+<header>
+ <div class="top"><b>🎄 Christmas Gallery<span> Admin</span></b><span style="display:flex;gap:6px"><a href="../" target="_blank">সাইট দেখুন</a><a href="#" onclick="alert('ডেমোতে লগআউট নেই');return false">লগআউট</a></span></div>
+ <nav><a href="#orders" data-tab="orders">অর্ডার<span class="pill" id="npill"></span></a><a href="#products" data-tab="products">প্রোডাক্ট ও দাম</a><a href="#settings" data-tab="settings">সেটিংস</a></nav>
+</header>
+<main id="main"></main>
+<script>
+var PRODUCTS = __PRODUCTS__;
+var ST={new:'নতুন',confirmed:'কনফার্ম',shipped:'পাঠানো হয়েছে',delivered:'ডেলিভারি হয়েছে',cancelled:'বাতিল'};
+var SAMPLE=[
+ {code:'CG1003',name:'রাকিব হাসান (নমুনা)',phone:'01700000003',address:'বাড়ি ১২, রোড ৫, ধানমন্ডি, ঢাকা',area:'dhaka',note:'সন্ধ্যার পরে ডেলিভারি দিলে ভালো',items:[{name:'Medium Christmas Tree',size:'মাঝারি',qty:1,line:2500},{name:'Light-up Tree Top Star',size:'',qty:1,line:450}],delivery:70,total:3020,status:'new',created_at:'2026-11-24 18:40'},
+ {code:'CG1002',name:'সুমাইয়া আক্তার (নমুনা)',phone:'01800000002',address:'আগ্রাবাদ, চট্টগ্রাম',area:'outside',note:'',items:[{name:'Dancing Santa Claus Doll',size:'',qty:2,line:2400}],delivery:130,total:2530,status:'confirmed',created_at:'2026-11-24 15:12'},
+ {code:'CG1001',name:'জন ডি কস্টা (নমুনা)',phone:'01900000001',address:'মিরপুর ১০, ঢাকা',area:'dhaka',note:'',items:[{name:'Pink & Silver Ball Set',size:'',qty:2,line:1700},{name:'Santa Hat',size:'',qty:3,line:450}],delivery:70,total:2220,status:'delivered',created_at:'2026-11-23 20:05'}
+];
+function ls(k,d){try{return JSON.parse(localStorage.getItem(k)||'')||d}catch(e){return d}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+var bn=function(n){return String(n).replace(/\d/g,function(d){return "০১২৩৪৫৬৭৮৯"[d]})};
+function orders(){var mine=ls('cg_demo_orders',[]),stat=ls('cg_demo_status',{});return mine.concat(SAMPLE).map(function(o){if(stat[o.code])o.status=stat[o.code];return o})}
+function prods(){var ov=ls('cg_demo_products',{});return PRODUCTS.map(function(p){var o=ov[p.id];return Object.assign({},p,o?{price:+o.price,stock:+o.stock}:{})})}
+function flash(m){var f=document.createElement('div');f.className='flash';f.textContent=m;document.getElementById('main').prepend(f);setTimeout(function(){f.remove()},2500)}
+function render(){
+ var tab=(location.hash||'#orders').slice(1);
+ document.querySelectorAll('nav a').forEach(function(a){a.className=a.dataset.tab===tab?'on':''});
+ var os=orders(),nNew=os.filter(function(o){return o.status==='new'}).length;
+ document.getElementById('npill').textContent=bn(nNew);document.getElementById('npill').style.display=nNew?'':'none';
+ var m=document.getElementById('main'),h='';
+ if(tab==='orders'){
+  var sales=os.filter(function(o){return o.status==='delivered'}).reduce(function(s,o){return s+o.total},0);
+  h+='<div class="stats"><div class="stat"><small>নতুন অর্ডার</small><b>'+bn(nNew)+'</b></div><div class="stat"><small>আজকের অর্ডার</small><b>'+bn(os.filter(function(o){return o.created_at.slice(0,10)===new Date().toISOString().slice(0,10)}).length)+'</b></div><div class="stat"><small>মোট অর্ডার</small><b>'+bn(os.length)+'</b></div><div class="stat"><small>ডেলিভারি হওয়া বিক্রি</small><b>৳ '+bn(sales)+'</b></div></div>';
+  os.forEach(function(o){
+   h+='<div class="ord '+(o.status==='new'?'new':'')+'"><div class="oh"><div><b>'+esc(o.code)+'</b> <span class="st st-'+o.status+'">'+ST[o.status]+'</span></div><small>'+esc(o.created_at)+'</small></div><div class="og"><div><p><b>'+esc(o.name)+'</b></p><p>📞 '+esc(o.phone)+'</p><p>📍 '+esc(o.address)+'</p><p><small>'+(o.area==='outside'?'ঢাকার বাইরে':'ঢাকার ভিতরে')+'</small></p>'+(o.note?'<p>📝 '+esc(o.note)+'</p>':'')+'</div><div><ul>'+o.items.map(function(i){return '<li>'+esc(i.name)+(i.size?' ('+esc(i.size)+')':'')+' × '+i.qty+' = ৳'+i.line+'</li>'}).join('')+'</ul><p>ডেলিভারি: ৳'+o.delivery+'</p><p class="tot">মোট: ৳'+o.total+'</p></div></div>'+
+   '<div class="acts"><a class="btn b-red" href="tel:'+esc(o.phone)+'">কল</a><a class="btn b-green" href="#" onclick="return false">WhatsApp</a><select data-code="'+esc(o.code)+'">'+Object.keys(ST).map(function(k){return '<option value="'+k+'"'+(k===o.status?' selected':'')+'>'+ST[k]+'</option>'}).join('')+'</select><button class="btn b-gold" data-save="'+esc(o.code)+'">সেভ</button></div></div>';
+  });
+ } else if(tab==='products'){
+  h+='<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"><a class="btn b-red" href="#" onclick="alert(\'আসল Admin এ এখান থেকে ছবি দিয়ে নতুন প্রোডাক্ট যোগ করা যায়।\');return false">+ নতুন আইটেম</a><a class="btn b-green" href="#" onclick="alert(\'আসল Admin এ এখান থেকে নতুন ট্রি যোগ করা যায়।\');return false">+ নতুন Christmas Tree</a></div>';
+  h+='<table class="resp"><thead><tr><th>ছবি</th><th>নাম</th><th>দাম (৳)</th><th>অবস্থা</th><th></th></tr></thead><tbody>'+prods().map(function(p){return '<tr><td><img src="../'+esc(p.img)+'" alt=""></td><td><b>'+esc(p.name)+'</b><br><small>'+(p.type==='tree'?'🎄 Tree':'আইটেম')+(p.size?' · '+esc(p.size):'')+'</small></td><td><input class="pr" data-pid="'+p.id+'" inputmode="numeric" value="'+p.price+'"></td><td><label style="display:flex;gap:6px;align-items:center;font-weight:600"><input type="checkbox" data-stock="'+p.id+'" style="width:auto"'+(p.stock?' checked':'')+'> স্টকে আছে</label></td><td></td></tr>'}).join('')+'</tbody></table>';
+  h+='<p><button class="btn b-gold" id="saveprices">সব দাম একসাথে সেভ করুন</button> <span class="hint">ডেমোতে সেভ করলে এই ব্রাউজারে সাইটের দাম বদলে যাবে, গিয়ে দেখুন।</span></p>';
+ } else {
+  h+='<div class="card"><h2 style="margin-top:0">সেটিংস</h2><div class="fg"><div><label>ফোন নম্বর</label><input value="01779-443155" disabled></div><div><label>WhatsApp নম্বর</label><input value="8801779443155" disabled></div><div><label>ঢাকার ভিতরে ডেলিভারি চার্জ (৳)</label><input value="70" disabled></div><div><label>ঢাকার বাইরে ডেলিভারি চার্জ (৳)</label><input value="130" disabled></div><div class="full"><label>নতুন Admin পাসওয়ার্ড</label><input type="password" disabled placeholder="আসল Admin এ এখানে পাসওয়ার্ড বদলানো যায়"></div></div><p class="hint">ডেমোতে সেটিংস বদলানো বন্ধ।</p></div>';
+ }
+ m.innerHTML=h;
+}
+document.addEventListener('click',function(e){
+ var s=e.target.closest('[data-save]');if(s){var st=ls('cg_demo_status',{});st[s.dataset.save]=document.querySelector('select[data-code="'+s.dataset.save+'"]').value;lsSet('cg_demo_status',st);render();flash('স্ট্যাটাস আপডেট হয়েছে');return}
+ if(e.target.id==='saveprices'){var ov={};document.querySelectorAll('[data-pid]').forEach(function(i){var id=i.dataset.pid;ov[id]={price:Math.max(0,parseInt(i.value.replace(/[০-৯]/g,function(d){return "০১২৩৪৫৬৭৮৯".indexOf(d)}),10)||0),stock:document.querySelector('[data-stock="'+id+'"]').checked?1:0}});lsSet('cg_demo_products',ov);render();flash('দাম সেভ হয়েছে');}
+});
+addEventListener('hashchange',render);render();
+</script>
+</body></html>

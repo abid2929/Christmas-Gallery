@@ -1,0 +1,6 @@
+Options -Indexes
+DirectoryIndex index.php index.html
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/webp "access plus 30 days"
+</IfModule>
