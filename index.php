@@ -116,16 +116,17 @@ section{padding:64px 0}
 .head p{color:var(--muted);margin-top:6px}
 
 /* categories */
-.cats{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.cats{display:grid;grid-template-columns:repeat(8,1fr);gap:16px}
 .cat{text-align:center;font-weight:600}
 .cat .c{aspect-ratio:1;border-radius:50%;overflow:hidden;background:#fff;border:4px solid #fff;box-shadow:0 8px 22px rgba(120,10,20,.15);margin-bottom:10px;transition:transform .2s}
 .cat:hover .c{transform:translateY(-4px) rotate(-3deg)}
 .cat img{width:100%;height:100%;object-fit:cover}
 .cat small{display:block;color:var(--muted);font-weight:500}
-@media (max-width:760px){.cats{grid-template-columns:repeat(5,minmax(96px,1fr));overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory}.cat{scroll-snap-align:start;font-size:14px}}
+@media (max-width:760px){.cats{grid-template-columns:repeat(8,minmax(92px,1fr));overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory}.cat{scroll-snap-align:start;font-size:14px}}
 
 /* products */
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media (max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
 .card{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:0 10px 26px rgba(120,10,20,.09);display:flex;flex-direction:column;border:1px solid #f3dede;transition:transform .2s,box-shadow .2s}
 .card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(120,10,20,.16)}
 .card .img{position:relative;aspect-ratio:1/1;background:linear-gradient(160deg,#fff,#fbeeee);display:grid;place-items:center;cursor:zoom-in;overflow:hidden}
@@ -308,7 +309,7 @@ footer a:hover{opacity:1;color:var(--gold)}
   <div class="slide on"><div class="wrap slide-banner">
    <h1 style="position:absolute;left:-9999px">Christmas Gallery</h1>
    <picture><source media="(max-width:700px)" srcset="img/banner-s.webp"><img src="img/banner.webp" alt="Christmas Gallery banner: Christmas ball box, star, Santa, tree" width="2048" height="758"></picture>
-   <div class="bcap"><h2 class="xmas">সব Christmas সাজানোর জিনিস এক জায়গায়</h2><p>Ball, Star, Dancing Santa, Santa Hat আর ৩ রকম Christmas Tree। ঘরে বসে অর্ডার করুন।</p><div class="btns"><a class="btn btn-gold" href="#products">কেনাকাটা শুরু করুন</a><a class="btn btn-ghost" href="#trees">Tree দেখুন</a></div></div>
+   <div class="bcap"><h2 class="xmas">সব Christmas সাজানোর জিনিস এক জায়গায়</h2><p>Ball, Star, Santa, Lights, Wreath, Gift Box আর ৪ রকম Christmas Tree। ঘরে বসে অর্ডার করুন।</p><div class="btns"><a class="btn btn-gold" href="#products">কেনাকাটা শুরু করুন</a><a class="btn btn-ghost" href="#trees">Tree দেখুন</a></div></div>
   </div></div>
   <div class="slide"><div class="wrap slide-grid">
    <div>
@@ -321,12 +322,21 @@ footer a:hover{opacity:1;color:var(--gold)}
   </div></div>
   <div class="slide"><div class="wrap slide-grid">
    <div>
-    <span class="tag">🎄 ৩ রকম সাইজ</span>
+    <span class="tag">🎄 ৪ রকম ট্রি</span>
     <h2 class="xmas">আপনার ঘরের জন্য<br>Christmas Tree</h2>
     <p>ছোট টেবিল ট্রি থেকে বড় ফ্লোর ট্রি পর্যন্ত। সাথে বল, স্টার আর সব সাজানোর জিনিস এক জায়গায়।</p>
     <div class="btns"><a class="btn btn-gold" href="#trees">ট্রি দেখুন</a><a class="btn btn-ghost" href="tel:<?= h($tel) ?>">কল করুন</a></div>
    </div>
    <div class="pic"><span class="ring"></span><img src="img/t1.webp" alt="Christmas tree" width="583" height="700"></div>
+  </div></div>
+  <div class="slide"><div class="wrap slide-grid">
+   <div>
+    <span class="tag">🎁 গিফট আর সাজসজ্জা</span>
+    <h2 class="xmas">Lights, Wreath,<br>Gift Box সব পাবেন</h2>
+    <p>ঘর সাজানোর ঝলমলে লাইট, দরজার রিদ, Christmas মোজা, গিফট বক্স আর মোমবাতি এক জায়গায়।</p>
+    <div class="btns"><a class="btn btn-gold" href="#products">সব আইটেম দেখুন</a><a class="btn btn-ghost" href="#how">কিভাবে অর্ডার</a></div>
+   </div>
+   <div class="pic"><span class="ring"></span><img src="img/h-gift.webp" alt="Christmas gift box" loading="lazy" style="aspect-ratio:1;object-fit:cover;width:340px;max-width:100%"></div>
   </div></div>
  </div>
  <button class="arrow l" data-dir="-1" aria-label="আগের">‹</button>
@@ -339,11 +349,14 @@ footer a:hover{opacity:1;color:var(--gold)}
  <div class="wrap">
   <div class="head"><span class="xmas">Shop by category</span><h2>কি কি পাবেন</h2></div>
   <div class="cats">
-   <a class="cat" href="#products"><div class="c"><img src="img/p2.webp" alt="" loading="lazy"></div>Christmas Ball<small>৩ রকম বক্স</small></a>
+   <a class="cat" href="#products"><div class="c"><img src="img/p2.webp" alt="" loading="lazy"></div>Christmas Ball<small>অনেক রকম</small></a>
    <a class="cat" href="#products"><div class="c"><img src="img/p4.webp" alt="" loading="lazy"></div>Tree Star<small>লাইট সহ</small></a>
    <a class="cat" href="#products"><div class="c"><img src="img/p5.webp" alt="" loading="lazy" style="object-position:30% 50%"></div>Dancing Santa<small>গান বাজে</small></a>
-   <a class="cat" href="#products"><div class="c"><img src="img/p6.webp" alt="" loading="lazy"></div>Santa Hat<small>নরম কাপড়</small></a>
-   <a class="cat" href="#trees"><div class="c"><img src="img/t1.webp" alt="" loading="lazy" style="object-position:50% 30%"></div>Christmas Tree<small>৩ সাইজ</small></a>
+   <a class="cat" href="#products"><div class="c"><img src="img/n-lights.webp" alt="" loading="lazy"></div>Fairy Lights<small>LED</small></a>
+   <a class="cat" href="#products"><div class="c"><img src="img/n-wreath.webp" alt="" loading="lazy"></div>Wreath<small>দরজার জন্য</small></a>
+   <a class="cat" href="#products"><div class="c"><img src="img/n-giftset.webp" alt="" loading="lazy"></div>Gift Box<small>র‍্যাপিং সহ</small></a>
+   <a class="cat" href="#products"><div class="c"><img src="img/n-stocking.webp" alt="" loading="lazy"></div>Stocking<small>মোজা</small></a>
+   <a class="cat" href="#trees"><div class="c"><img src="img/t1.webp" alt="" loading="lazy" style="object-fit:contain;padding:8px"></div>Christmas Tree<small>৪ রকম</small></a>
   </div>
  </div>
 </section>
@@ -357,7 +370,7 @@ footer a:hover{opacity:1;color:var(--gold)}
 
 <section class="trees" id="trees">
  <div class="wrap">
-  <div class="head"><span class="xmas">Christmas trees</span><h2>৩ রকম Christmas Tree</h2><p>আপনার ঘরের জায়গা অনুযায়ী সাইজ বেছে নিন</p></div>
+  <div class="head"><span class="xmas">Christmas trees</span><h2>৪ রকম Christmas Tree</h2><p>আপনার ঘরের জায়গা অনুযায়ী সাইজ বেছে নিন</p></div>
   <div class="grid" id="tgrid"></div>
  </div>
 </section>

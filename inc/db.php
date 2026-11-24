@@ -2,7 +2,7 @@
 // Christmas Gallery - database (SQLite, created automatically on first visit)
 declare(strict_types=1);
 
-const CG_VERSION = '1.0.0';
+const CG_VERSION = '1.1.0';
 
 function db(): PDO {
     static $pdo = null;
@@ -54,9 +54,20 @@ function cg_install(PDO $pdo): void {
         ['item','Light-up Tree Top Star','ট্রির মাথায় লাগানোর গোল্ডেন স্টার, ভেতরে আলো জ্বলে।','img/p4.webp','Light','',''],
         ['item','Dancing Santa Claus Doll','গান বাজিয়ে নাচে এমন Santa doll। কয়েকটা ডিজাইন আছে (গিটার, ব্যাগ ইত্যাদি)।','img/p5.webp','Hot','',''],
         ['item','Santa Hat','নরম লাল কাপড় আর সাদা ফার দেওয়া Santa টুপি। বড় ছোট সবার জন্য।','img/p6.webp','Party','',''],
+        ['item','Star Fairy Lights (LED)','তারার আকারের ছোট ছোট LED লাইট। ট্রি, জানালা বা দেয়ালে লাগালে ঝলমল করে।','img/n-lights.webp','Light','',''],
+        ['item','Green Christmas Wreath','পাইন পাতা, পাইন কোন আর গোল্ডেন ডেকোরেশন দেওয়া সবুজ রিদ। দরজায় ঝোলানোর জন্য।','img/n-wreath.webp','Door','',''],
+        ['item','Golden Glitter Wreath','গোল্ডেন-সিলভার গ্লিটার রিদ, ঘরের দেয়াল বা দরজা সাজানোর জন্য।','img/n-goldwreath.webp','Premium','',''],
+        ['item','Christmas Stocking','লাল ভেলভেট আর সাদা ফারের Christmas মোজা। গিফট রাখার জন্য ঝুলিয়ে রাখুন।','img/n-stocking.webp','Gift','',''],
+        ['item','Glitter Christmas Ball','গ্লিটার দেওয়া রঙিন বড় Christmas ball, আলোতে চকচক করে।','img/n-glitterball.webp','নতুন','',''],
+        ['item','Red & Gold Ball Set','লাল আর গোল্ডেন রঙের Christmas ball সেট, ট্রিতে দারুণ মানায়।','img/n-redgold.webp','','',''],
+        ['item','Snowman Showpiece','সাদা ছোট Snowman শোপিস, লাল মাফলার আর কালো টুপি।','img/n-snowman.webp','Cute','',''],
+        ['item','Christmas Gift Box Set','রঙিন র‍্যাপিং করা গিফট বক্স সেট। ট্রির নিচে সাজাতে বা গিফট দিতে।','img/n-giftset.webp','Gift','',''],
+        ['item','Black & Red Gift Box','কালো বক্সে লাল রিবন, প্রিমিয়াম গিফট প্যাকিং।','img/n-giftbox.webp','','',''],
+        ['item','Christmas Candle','সাদা পিলার মোমবাতি, Christmas এর সন্ধ্যায় ঘরে উষ্ণ আলো।','img/n-candles.webp','','',''],
         ['tree','Table Top Christmas Tree','টেবিল, শেলফ বা অফিস ডেস্কের জন্য ছোট ট্রি।','img/t1.webp','','ছোট','tree-s'],
         ['tree','Medium Christmas Tree','ড্রইং রুমের কোণার জন্য মাঝারি সাইজের ট্রি।','img/t1.webp','','মাঝারি','tree-m'],
         ['tree','Big Christmas Tree','বড় ঘর, অফিস বা দোকানের জন্য বড় ফ্লোর ট্রি।','img/t1.webp','','বড়','tree-l'],
+        ['tree','Snow White Christmas Tree','সাদা তুষারের মতো দেখতে Christmas tree, সাথে বল আর লাইট দিয়ে সাজানো।','img/t-snow.webp','Snow','তুষার',''],
     ];
     $st = $pdo->prepare('INSERT INTO products(type,name,descr,img,badge,size,img_cls,sort) VALUES(?,?,?,?,?,?,?,?)');
     foreach ($seed as $i => $r) $st->execute([...$r, $i + 1]);
