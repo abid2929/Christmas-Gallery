@@ -907,7 +907,7 @@ function off(p){return p.price&&p.old>p.price?Math.round(100-p.price/p.old*100):
 function pick(p){return p.sizes.length||p.colors.length}
 function stars(r){r=Math.round(r);return '<span class="stars">'+'★'.repeat(r)+'<i>'+'★'.repeat(5-r)+'</i></span>'}
 function priceHTML(p){return p.price?'<span class="price">'+tk(p.price)+(p.old>p.price?' <s>'+tk(p.old)+'</s>':'')+'</span>':'<span class="price ask">'+L('দাম জানতে মেসেজ করুন','Message us for price')+'</span>'}
-function waLink(p,q,s,c){var t="Assalamu alaikum, Christmas Gallery theke order korte chai:\n"+p.name+(p.size?" ("+p.size+")":"")+(s?"\nSize: "+s:"")+(c?"\nColor: "+c:"")+"\nQuantity: "+q+(p.price?"\nPrice: "+p.price+" tk":"")+"\n\nAmar naam:\nPhone:\nAddress:";return "https://wa.me/"+WA+"?text="+encodeURIComponent(t)}
+function waLink(p,q,s,c){var t="Hello! 🎄 Christmas Gallery theke order korte chai:\n"+p.name+(p.size?" ("+p.size+")":"")+(s?"\nSize: "+s:"")+(c?"\nColor: "+c:"")+"\nQuantity: "+q+(p.price?"\nPrice: "+p.price+" tk":"")+"\n\nAmar naam:\nPhone:\nAddress:";return "https://wa.me/"+WA+"?text="+encodeURIComponent(t)}
 function badges(p,tree){var o=off(p),b='';
  if(o)b='<span class="badge off">-'+num(o)+'%</span>';
  else if(p.fl)b='<span class="badge">'+L('ফ্ল্যাশ সেল','Flash sale')+'</span>';
@@ -1078,7 +1078,7 @@ document.getElementById('st-form').addEventListener('submit',function(e){
  .then(function(r){
   if(!r.ok)throw new Error(r.error||'error');
   var txt=lines.map(function(i){return '- '+i.name+(i.size?' ('+i.size+')':'')+(i.v?' ['+i.v+']':'')+' x'+i.qty+' = '+(i.price*i.qty)+' tk'}).join('\n');
-  var msg='Assalamu alaikum, ami website theke order korte chai.'+(r.no?'\nOrder: '+r.no:'')+'\n'+txt+'\nDelivery: '+r.ship+' tk\nTotal: '+r.total+' tk'+(pay!=='cod'?'\nPayment: '+pay+' (TrxID '+f.trx.value+')':'')+'\n\nNaam: '+f.cname.value+'\nPhone: '+ph+'\nAddress: '+f.address.value;
+  var msg='Hello! 🎄 Ami website theke order korte chai.'+(r.no?'\nOrder: '+r.no:'')+'\n'+txt+'\nDelivery: '+r.ship+' tk\nTotal: '+r.total+' tk'+(pay!=='cod'?'\nPayment: '+pay+' (TrxID '+f.trx.value+')':'')+'\n\nNaam: '+f.cname.value+'\nPhone: '+ph+'\nAddress: '+f.address.value;
   document.getElementById('d-code').textContent=r.no;document.getElementById('d-total').textContent=tk(r.total);
   var wl='https://wa.me/'+WA+'?text='+encodeURIComponent(msg);document.getElementById('d-wa').href=wl;
   if(r.wa){document.getElementById('d-nobox').hidden=true;document.getElementById('d-wahint').hidden=false;try{window.open(wl,'_blank')}catch(e){}}
