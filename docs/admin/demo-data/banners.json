@@ -1,5 +1,18 @@
 [
     {
+        "img": "p5.webp",
+        "title": "Gifts & Santa",
+        "title_en": "Gifts & Santa",
+        "tag": "Gift Collection",
+        "tag_en": "Gift Collection",
+        "sub": "প্রিয়জনের জন্য Christmas গিফট",
+        "sub_en": "Christmas gifts for loved ones",
+        "btn": "এখনই দেখুন",
+        "btn_en": "Shop now",
+        "link": "#products",
+        "on": 1
+    },
+    {
         "img": "p4.webp",
         "title": "Christmas Décor",
         "title_en": "Christmas Décor",
@@ -23,19 +36,6 @@
         "btn": "ট্রি দেখুন",
         "btn_en": "See trees",
         "link": "#trees",
-        "on": 1
-    },
-    {
-        "img": "p5.webp",
-        "title": "Gifts & Santa",
-        "title_en": "Gifts & Santa",
-        "tag": "Gift Collection",
-        "tag_en": "Gift Collection",
-        "sub": "প্রিয়জনের জন্য Christmas গিফট",
-        "sub_en": "Christmas gifts for loved ones",
-        "btn": "এখনই দেখুন",
-        "btn_en": "Shop now",
-        "link": "#products",
         "on": 1
     },
     {

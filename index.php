@@ -95,15 +95,22 @@ $base = defined('CG_BASE') ? CG_BASE : (((!empty($_SERVER['HTTPS']) && $_SERVER[
 <meta property="og:type" content="website">
 <meta property="og:title" content="<?= h($seoTitle) ?>">
 <meta property="og:description" content="<?= h($seoDesc) ?>">
-<meta property="og:image" content="<?= h($base . 'img/banner.webp') ?>">
+<meta property="og:image" content="<?= h($base . 'img/share.jpg') ?>">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="<?= h($base . 'img/share.jpg') ?>">
 <meta name="theme-color" content="#8a1020">
 <?php if (!defined('CG_DEMO')): ?><link rel="canonical" href="<?= h($base) ?>"><?php endif; ?>
 <?php if ($hi0): ?><link rel="preload" as="image" href="<?= h($hi0) ?>" imagesrcset="<?= h(thumb_path($hi0)) ?> 480w, <?= h($hi0) ?> 1000w" imagesizes="(max-width:760px) 60vw, 58vw" fetchpriority="high"><?php endif; ?>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎄%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="<?= h($base) ?>favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="<?= h($base) ?>img/icon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="<?= h($base) ?>img/icon-192.png">
+<link rel="apple-touch-icon" href="<?= h($base) ?>img/icon-180.png">
+<link rel="manifest" href="<?= h($base) ?>manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Poppins:wght@500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Poppins:wght@500;600;700&display=swap"></noscript>
-<script type="application/ld+json"><?= json_encode(['@context' => 'https://schema.org', '@type' => 'Store', 'name' => $store, 'telephone' => $tel, 'description' => $seoDesc, 'image' => 'img/banner.webp'] + ($addr ? ['address' => $addr] : []), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG) ?></script>
+<script type="application/ld+json"><?= json_encode(['@context' => 'https://schema.org', '@type' => 'Store', 'name' => $store, 'telephone' => $tel, 'description' => $seoDesc, 'url' => $base, 'logo' => $base . 'img/icon-512.png', 'image' => $base . 'img/share.jpg'] + ($addr ? ['address' => $addr] : []), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG) ?></script>
 <?php if ($pixel && !defined('CG_DEMO')): ?>
 <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','<?= $pixel ?>');fbq('track','PageView');</script>
@@ -718,6 +725,10 @@ header .nav{animation:cgDown .7s cubic-bezier(.2,.7,.2,1) both}
 #cats .cat .c img{transition:transform .6s cubic-bezier(.2,.7,.2,1)}#cats .cat:hover .c img{transform:scale(1.08)}
 .slide{animation:none!important}
 @media (max-width:760px){.hero .slide-grid .btns{justify-content:flex-start!important}}
+
+.devby{text-align:center;white-space:nowrap;font-size:12px;letter-spacing:.3px;opacity:.85;margin-top:8px;font-family:Poppins,sans-serif}
+.devby b{font-weight:600;color:#e8c77a}.devby span{margin:0 4px}
+.devby a{color:#e8c77a;text-decoration:none;font-weight:600}.devby a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
@@ -727,10 +738,10 @@ $PHIC = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" s
 <header>
  <div class="wrap nav">
   <a class="brand" href="#top">
-   <span class="tree-ic"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M12 1.5l2.2 7.1 7.3.2-5.9 4.4 2.2 7.1L12 16l-5.8 4.3 2.2-7.1-5.9-4.4 7.3-.2z" fill="#e7cf8f"/></svg></span>
    <span><b><?= h($store) ?></b><small><?= $T('store_tagline') ?></small></span>
   </a>
   <nav class="menu" id="menu">
+   <?= bi('হোম', 'Home', 'a', ' href="#top"') ?>
    <?= bi('প্রোডাক্ট', 'Products', 'a', ' href="#products"') ?>
    <?= bi('Christmas Tree', 'Christmas Tree', 'a', ' href="#trees"') ?>
    <?php if ($on('cms_reviews')): ?><?= bi('রিভিউ', 'Reviews', 'a', ' href="#reviews"') ?><?php endif; ?>
@@ -882,6 +893,7 @@ $PHIC = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" s
    <div><?= bi('যোগাযোগ', 'Contact', 'h3') ?><a href="tel:<?= h($tel) ?>" data-contact>📞 <?= h($phone) ?></a><a href="https://wa.me/<?= h($wa) ?>" target="_blank" rel="noopener" data-contact>💬 WhatsApp</a><?php if ($fb): ?><a href="<?= h($fb) ?>" target="_blank" rel="noopener">📘 Facebook</a><?php endif; ?><?php if ($email): ?><a href="mailto:<?= h($email) ?>">✉️ <?= h($email) ?></a><?php endif; ?><?php if ($addr): ?><span style="display:block;padding:3px 0">📍 <?= h($addr) ?></span><?php endif; ?></div>
   </div>
   <div class="copy">© <span id="yr">2026</span> <?= h($store) ?>. Merry Christmas! 🎄</div>
+  <div class="devby">Developed by <b>Abid Islam</b> <span>·</span> <a href="https://boostnixmedia.com" target="_blank" rel="noopener">Boostnix Media</a></div>
  </div>
 </footer>
 
