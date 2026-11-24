@@ -912,7 +912,7 @@ $PHIC = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" s
     <?= $T('cms_contact_title', 'h2') ?>
     <?= $T('cms_contact_text', 'p') ?>
     <a class="ph" href="tel:<?= h($tel) ?>" data-contact><?= h($phone) ?></a>
-    <div class="btns"><a class="btn btn-wa" href="https://wa.me/<?= h($wa) ?>?text=Assalamu%20alaikum%2C%20Christmas%20item%20order%20korte%20chai" target="_blank" rel="noopener" data-contact><?= bi('WhatsApp এ মেসেজ', 'Message on WhatsApp') ?></a><a class="btn btn-gold" href="tel:<?= h($tel) ?>" data-contact><?= bi('কল করুন', 'Call us') ?></a></div>
+    <div class="btns"><a class="btn btn-wa" href="https://wa.me/<?= h($wa) ?>?text=Hello%20Christmas%20Gallery%2C%20Christmas%20item%20order%20korte%20chai%20%F0%9F%8E%84" target="_blank" rel="noopener" data-contact><?= bi('WhatsApp এ মেসেজ', 'Message on WhatsApp') ?></a><a class="btn btn-gold" href="tel:<?= h($tel) ?>" data-contact><?= bi('কল করুন', 'Call us') ?></a></div>
    </div>
    <img src="img/p5-s.webp" alt="Santa Claus" loading="lazy" width="500" height="500">
   </div>
