@@ -58,6 +58,7 @@ foreach (pv_read('banners') as $b) if (!empty($b['on']) && !empty($b['img'])) $b
     'btn_text' => (string)(($b['btn'] ?? '') ?: 'Shop now'), 'btn_en' => (string)(($b['btn_en'] ?? '') ?: 'Shop now'), 'btn_link' => (string)(($b['link'] ?? '') ?: '#products'),
 ];
 $heroMain = false;
+$hi0 = $banners ? img_url($banners[0]['img']) : '';
 $allRev = []; foreach (array_slice($revAll, 0, 9) as $r) $allRev[] = ['n' => $r['name'], 'r' => max(1, min(5, (int)($r['stars'] ?? 5))), 'b' => $r['text'], 'p' => (string)($r['pet'] ?? ''), 'd' => ''];
 
 $bk = trim((string)($pm['bkash'] ?? '')); $ng = trim((string)($pm['nagad'] ?? ''));
@@ -97,7 +98,7 @@ $base = defined('CG_BASE') ? CG_BASE : (((!empty($_SERVER['HTTPS']) && $_SERVER[
 <meta property="og:image" content="<?= h($base . 'img/banner.webp') ?>">
 <meta name="theme-color" content="#8a1020">
 <?php if (!defined('CG_DEMO')): ?><link rel="canonical" href="<?= h($base) ?>"><?php endif; ?>
-<link rel="preload" as="image" href="img/banner.webp" imagesrcset="img/banner-s.webp 480w, img/banner-800.webp 800w, img/banner-m.webp 1200w, img/banner.webp 2048w" imagesizes="100vw" fetchpriority="high">
+<?php if ($hi0): ?><link rel="preload" as="image" href="<?= h($hi0) ?>" imagesrcset="<?= h(thumb_path($hi0)) ?> 480w, <?= h($hi0) ?> 1000w" imagesizes="(max-width:760px) 60vw, 58vw" fetchpriority="high"><?php endif; ?>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎄%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -635,6 +636,67 @@ footer .fbrand{font-family:"Playfair Display",serif;font-size:26px;color:#fff}
 @media (max-width:760px){.slide-grid .pic img{width:100%!important;max-width:none!important}.slide-grid{padding-top:0}}
 @media (max-width:760px){.slide-grid .pic{align-self:stretch;width:auto}.slide-grid>div:first-child{align-self:stretch}}
 @media (max-width:760px){.slide-grid .pic{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}}
+/* phone: hero = one wide horizontal banner (photo behind, text on top) */
+@media (max-width:760px){
+ .hero .slide-grid{display:flex;flex-direction:column;justify-content:flex-end;min-height:min(92vw,380px);padding:0 0 46px}
+ .hero .slide-grid .pic{position:absolute;inset:0;margin:0!important;height:auto;aspect-ratio:auto;width:auto!important}
+ .hero .slide-grid .pic img{width:100%!important;height:100%;object-fit:cover;object-position:70% 50%}
+ .hero .slide-grid .pic:after{display:block;background:linear-gradient(90deg,rgba(40,4,10,.92) 0,rgba(40,4,10,.6) 55%,rgba(40,4,10,.15) 100%),linear-gradient(0deg,rgba(40,4,10,.7),transparent 45%)}
+ .hero .slide-grid .pic .note{display:none}
+ .hero .slide-grid>div:first-child{margin-top:0;position:relative;z-index:2;max-width:92%}
+ .hero .slide-grid h1,.hero .slide-grid h2{font-size:clamp(25px,7vw,32px)}
+ .hero .slide-grid p{display:none}
+ .hero .slide-grid .btns{margin-top:16px}.hero .slide-grid .btns .btn{flex:0 1 auto;padding:11px 16px;font-size:14px}
+ .hero .dots{bottom:12px}
+}
+@media (max-width:760px){.hero .slide-grid .pic:after{background:linear-gradient(0deg,rgba(40,4,10,.88) 0,rgba(40,4,10,.4) 55%,rgba(40,4,10,.18) 100%)}}
+/* ===== banner slider (product banner style) ===== */
+.hero{background:linear-gradient(115deg,#4a0812 0%,#8a1020 48%,#b3192f 100%)}
+.hero .slide-grid{display:flex!important;flex-direction:column;justify-content:center;min-height:470px!important;padding:40px 0 60px!important}
+.hero .slide-grid .pic{position:absolute!important;inset:0 0 0 auto!important;width:58%!important;height:auto!important;margin:0!important;aspect-ratio:auto!important;order:0}
+.hero .slide-grid .pic img{width:100%!important;height:100%!important;object-fit:cover;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%)!important;mask-image:linear-gradient(90deg,transparent 0,#000 30%)!important}
+.hero .slide-grid .pic:after{display:none!important}
+.hero .slide-grid .pic .note{display:none!important}
+.hero .slide-grid>div:first-child{max-width:52%!important;margin:0!important;text-align:left;align-self:flex-start}
+.hero .tag{font-family:"Poppins",sans-serif;font-style:normal;text-transform:uppercase;letter-spacing:2.5px;font-size:12.5px;font-weight:600;color:var(--gold2);margin-bottom:12px}
+.hero .tag:before{display:none}
+.hero .slide-grid h1,.hero .slide-grid h2{font-family:"Playfair Display","Noto Serif Bengali",serif;font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:clamp(34px,5.4vw,72px);line-height:1.02;text-shadow:0 6px 30px rgba(0,0,0,.3)}
+.hero .pill{display:inline-block;margin-top:18px;background:#fff;color:var(--em);font-family:"Poppins",sans-serif;font-weight:700;font-size:13px;letter-spacing:.8px;text-transform:uppercase;border-radius:999px;padding:7px 16px;box-shadow:0 8px 20px rgba(0,0,0,.18)}
+.hero .slide-grid p{display:block!important;font-size:16px;margin:16px 0 22px;color:rgba(255,255,255,.85);max-width:420px}
+.hero .dots{bottom:18px!important}
+@media (max-width:760px){
+ .hero .slide-grid{min-height:0!important;aspect-ratio:16/10.5;padding:18px 0 30px!important}
+ .hero .slide-grid .pic{width:60%!important}
+ .hero .slide-grid .pic img{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 34%)!important;mask-image:linear-gradient(90deg,transparent 0,#000 34%)!important}
+ .hero .slide-grid>div:first-child{max-width:62%!important}
+ .hero .tag{font-size:9.5px;letter-spacing:1.6px;margin-bottom:6px}
+ .hero .slide-grid h1,.hero .slide-grid h2{font-size:clamp(25px,7.6vw,34px)}
+ .hero .pill{font-size:10.5px;padding:5px 11px;margin-top:10px}
+ .hero .slide-grid p{display:none!important}
+ .hero .slide-grid .btns{margin-top:12px!important;gap:0}
+ .hero .slide-grid .btns .btn-wa{display:none}
+ .hero .slide-grid .btns .btn-gold{background:none;box-shadow:none;color:#fff;padding:2px 0!important;border-bottom:1px solid #fff;border-radius:0;font-size:13.5px!important;flex:0 0 auto!important}
+ .hero .dots{bottom:6px!important}
+}
+/* ===== category tiles (right under the banner) ===== */
+#cats{padding:40px 0 34px}
+#cats .head{margin-bottom:22px}
+#cats .head h2:after{content:"";display:block;width:44px;height:3px;background:var(--em);margin:10px auto 0;border-radius:2px}
+.cat .c:after{background:linear-gradient(0deg,var(--tc,#8a1020) 0,color-mix(in srgb,var(--tc,#8a1020) 70%,transparent) 26%,transparent 58%)!important}
+.cats .cat:nth-child(6n+1){--tc:#8a1020}.cats .cat:nth-child(6n+2){--tc:#0f3d2e}.cats .cat:nth-child(6n+3){--tc:#8a6418}
+.cats .cat:nth-child(6n+4){--tc:#5a0a15}.cats .cat:nth-child(6n+5){--tc:#14532d}.cats .cat:nth-child(6n+6){--tc:#a3182b}
+.cat{text-align:center}
+.cat .cn{justify-self:center;text-align:center;margin:0 8px 34px!important;font-family:"Hind Siliguri","Playfair Display",sans-serif;font-weight:700}
+.cat>small{justify-self:center;margin:0 0 12px!important}
+.cat .c{border-radius:16px;box-shadow:0 10px 24px rgba(90,10,21,.16)}
+@media (max-width:760px){
+ .cats{grid-template-columns:repeat(3,1fr)!important;gap:10px!important}
+ .cat .c{aspect-ratio:1/1.12!important;border-radius:14px}
+ .cat{font-size:14px!important}
+ .cat .cn{margin:0 4px 12px!important;line-height:1.2}
+ .cat>small{display:none}
+}
+@media (min-width:761px){.cat .c{aspect-ratio:1/1.1!important}#cats .head .xmas{display:none}}
 </style>
 </head>
 <body>
@@ -667,7 +729,6 @@ $PHIC = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" s
  </div>
 </header>
 
-<div class="topbanner"><img src="img/banner.webp" srcset="img/banner-s.webp 480w, img/banner-800.webp 800w, img/banner-m.webp 1200w, img/banner.webp 2048w" sizes="100vw" alt="<?= h($store) ?>: All Christmas Decorate Items Here" width="2048" height="758" fetchpriority="high"></div>
 <div class="hero" id="top">
  <canvas id="snow"></canvas>
  <div class="slides" id="slides">
@@ -683,10 +744,10 @@ $PHIC = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" s
    <div>
     <?php if ($b['tag']): ?><?= bi($b['tag'], $b['tag_en'] ?: $b['tag'], 'span', ' class="tag"') ?><?php endif; ?>
     <?= bi($b['title'], $b['title_en'] ?: $b['title'], ($bi === 0 && !$heroMain) ? 'h1' : 'h2') ?>
-    <?php if ($b['subtitle']): ?><?= bi($b['subtitle'], $b['subtitle_en'] ?: $b['subtitle'], 'p') ?><?php endif; ?>
-    <div class="btns"><?php if ($b['btn_text']): ?><a class="btn btn-gold" href="<?= h($b['btn_link'] ?: '#products') ?>"><?= bi($b['btn_text'], $b['btn_en'] ?: $b['btn_text']) ?></a><?php endif; ?><a class="btn btn-wa" href="https://wa.me/<?= h($wa) ?>" target="_blank" rel="noopener" data-contact><?= bi('WhatsApp এ অর্ডার', 'Order on WhatsApp') ?></a></div>
+    <span class="pill">Cash on Delivery</span><?php if ($b['subtitle']): ?><?= bi($b['subtitle'], $b['subtitle_en'] ?: $b['subtitle'], 'p') ?><?php endif; ?>
+    <div class="btns"><?php if ($b['btn_text']): ?><a class="btn btn-gold" href="<?= h($b['btn_link'] ?: '#products') ?>"><?= bi($b['btn_text'], $b['btn_en'] ?: $b['btn_text']) ?> →</a><?php endif; ?><a class="btn btn-wa" href="https://wa.me/<?= h($wa) ?>" target="_blank" rel="noopener" data-contact><?= bi('WhatsApp এ অর্ডার', 'Order on WhatsApp') ?></a></div>
    </div>
-   <div class="pic"><span class="ring"></span><img src="<?= h(img_url(thumb_path($b['img']))) ?>" srcset="<?= h(img_url(thumb_path($b['img']))) ?> 480w, <?= h(img_url($b['img'])) ?> 1000w" sizes="(max-width:760px) 250px, 400px" alt="<?= h($b['title']) ?>" width="400" height="500"<?= $bi++ ? ' loading="lazy"' : '' ?>><span class="note">💵<span><b>Cash on Delivery</b><?= bi('সারা দেশে ডেলিভারি', 'All over Bangladesh') ?></span></span></div>
+   <div class="pic"><span class="ring"></span><img src="<?= h(img_url(thumb_path($b['img']))) ?>" srcset="<?= h(img_url(thumb_path($b['img']))) ?> 480w, <?= h(img_url($b['img'])) ?> 1000w" sizes="(max-width:760px) 60vw, 58vw" alt="<?= h($b['title']) ?>" width="400" height="500"<?= $bi++ ? ' loading="lazy"' : ' fetchpriority="high"' ?>><span class="note">💵<span><b>Cash on Delivery</b><?= bi('সারা দেশে ডেলিভারি', 'All over Bangladesh') ?></span></span></div>
   </div></div>
   <?php endforeach; ?>
  </div>
@@ -694,18 +755,10 @@ $PHIC = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" s
  <button class="arrow r" data-dir="1" aria-label="Next">›</button>
  <div class="dots" id="dots"></div>
 </div>
-<div class="trust"><div class="wrap">
- <div><span class="ti"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg></span><span><b>Cash on Delivery</b><small><?= bi('পণ্য হাতে পেয়ে টাকা', 'Pay when you receive') ?></small></span></div>
- <div><span class="ti"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></span><span><b>Fast Delivery</b><small><?= $T('delivery_time') ?></small></span></div>
- <div><span class="ti"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span><span><b>Premium Quality</b><small><?= bi('বাছাই করা সুন্দর জিনিস', 'Hand picked decorations') ?></small></span></div>
- <div><span class="ti"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v11H8l-4 4z"/></svg></span><span><b>WhatsApp Support</b><small><?= bi('যেকোনো প্রশ্নে মেসেজ করুন', 'Message us any time') ?></small></span></div>
-</div></div>
-<svg class="hero-wave" viewBox="0 0 1440 40" preserveAspectRatio="none" style="background:var(--red2)"><path d="M0 40V18c180 18 360 22 540 10S900 0 1080 6s270 20 360 22v12z" fill="currentColor"/></svg>
-
 <?php if ($on('cms_cats') && $cats): ?>
-<section id="cats" style="padding-top:36px">
+<section id="cats">
  <div class="wrap">
-  <div class="head"><span class="xmas">Shop by category</span><?= bi('কি কি পাবেন', 'What we have', 'h2') ?></div>
+  <div class="head"><span class="xmas">Shop by category</span><?= bi('কোনটা খুঁজছেন?', 'What are you looking for?', 'h2') ?></div>
   <div class="cats" style="--n:<?= min(8, max(3, count($cats))) ?>">
    <?php foreach ($cats as $c): $n = count(array_filter($list, fn($p) => $p['cat'] === $c['id'])); ?>
    <a class="cat" href="#products" data-cat="<?= h($c['id']) ?>"><div class="c"><img src="<?= h(img_url(thumb_path($c['img']))) ?>" alt="" loading="lazy" width="170" height="170"></div><span class="cn"><?= h($c['name']) ?></span><small><?= bi(bn_num($n) . 'টি আইটেম', $n . ' items') ?></small></a>
@@ -714,6 +767,15 @@ $PHIC = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" s
  </div>
 </section>
 <?php endif; ?>
+<div class="trust"><div class="wrap">
+ <div><span class="ti"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg></span><span><b>Cash on Delivery</b><small><?= bi('পণ্য হাতে পেয়ে টাকা', 'Pay when you receive') ?></small></span></div>
+ <div><span class="ti"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></span><span><b>Fast Delivery</b><small><?= $T('delivery_time') ?></small></span></div>
+ <div><span class="ti"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span><span><b>Premium Quality</b><small><?= bi('বাছাই করা সুন্দর জিনিস', 'Hand picked decorations') ?></small></span></div>
+ <div><span class="ti"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v11H8l-4 4z"/></svg></span><span><b>WhatsApp Support</b><small><?= bi('যেকোনো প্রশ্নে মেসেজ করুন', 'Message us any time') ?></small></span></div>
+</div></div>
+<svg class="hero-wave" viewBox="0 0 1440 40" preserveAspectRatio="none" style="background:var(--red2)"><path d="M0 40V18c180 18 360 22 540 10S900 0 1080 6s270 20 360 22v12z" fill="currentColor"/></svg>
+
+
 
 <?php if ($on('cms_flash')): ?>
 <section class="flash" id="flash" hidden>
