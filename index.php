@@ -766,6 +766,49 @@ header .nav{animation:cgDown .7s cubic-bezier(.2,.7,.2,1) both}
 .copy{padding-bottom:2px}
 @media (max-width:600px){.sig>span:first-child{flex-basis:100%}}
 footer{padding-bottom:20px!important}
+
+/* ===== shop page + product page (hash routes) ===== */
+.pview{display:none}
+body.r-page .hero,body.r-page #cats,body.r-page .trust,body.r-page #flash,body.r-page #trees,body.r-page .count,body.r-page #reviews,body.r-page #how,body.r-page #contact{display:none!important}
+body.r-product #products{display:none!important}
+body.r-product .pview{display:block}
+body.r-page .homehead{display:none}
+.phead:empty{display:none}
+.phead{text-align:center;padding:8px 0 22px;animation:cgUp .5s ease both}
+.phead h1{font-family:"Playfair Display","Noto Serif Bengali",serif;font-size:clamp(30px,4vw,46px);color:var(--em2);line-height:1.15;margin:6px 0 4px}
+.phead p{color:var(--muted);font-size:15px}
+.crumb{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;font-size:13.5px;color:var(--muted)}
+.crumb a{color:var(--em2);text-decoration:none;font-weight:600}.crumb a:hover{text-decoration:underline}
+.crumb span{opacity:.5}.crumb b{font-weight:600;color:#3a2a2c}
+body.r-shop #products{padding-top:30px!important;min-height:70vh}
+.pview{padding:26px 0 40px;animation:cgUp .45s ease both}
+.pview .crumb{justify-content:flex-start;margin-bottom:18px}
+.pv{display:grid;grid-template-columns:1.05fr 1fr;gap:44px;align-items:start}
+.pvimg{position:sticky;top:90px}
+.pvmain{position:relative;border-radius:22px;overflow:hidden;background:var(--sand);box-shadow:0 18px 44px rgba(58,6,16,.12)}
+.pvmain img{display:block;width:100%;aspect-ratio:1;object-fit:cover}
+.pvwish{top:14px;right:14px;width:44px;height:44px}
+.pvimg .thumbs{background:transparent;padding:12px 0 0;gap:10px}
+.pvimg .thumbs img{width:70px;height:70px;border-radius:12px}
+.pvt{display:flex;flex-direction:column;gap:12px;padding-top:4px}
+.pvt>*{flex-shrink:0}
+.pvt .pvh{font-family:"Playfair Display","Noto Serif Bengali",serif;font-size:clamp(28px,3.2vw,40px);line-height:1.15;color:var(--em2);font-weight:700}
+.pvt .price,.pvt .ask{font-size:22px}
+.pvt .order{display:flex;gap:10px;flex-wrap:wrap}
+.pvt .order .btn{min-height:50px;flex:1;justify-content:center}
+.pvt .order .btn-call{flex:0 0 54px}
+.pvt .mrev{border-top:1px solid var(--line);padding-top:14px;margin-top:6px}
+.pvt .rv{padding:10px 0;border-bottom:1px dashed var(--line);font-size:14.5px}
+.pvt .details{white-space:pre-line;color:#4b3b3d}
+.rel{margin-top:56px}
+@media (max-width:860px){
+ .pv{grid-template-columns:1fr;gap:20px}
+ .pvimg{position:static}
+ .pview{padding-top:16px}
+ .rel{margin-top:40px}
+}
+.pvt .price{font-size:26px}.pvt .price.ask{font-size:19px}
+.pvmain img{aspect-ratio:1/1!important;height:auto!important;width:100%!important;max-height:none}
 </style>
 </head>
 <body>
@@ -779,8 +822,8 @@ $PHIC = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" s
   </a>
   <nav class="menu" id="menu">
    <?= bi('হোম', 'Home', 'a', ' href="#top"') ?>
-   <?= bi('প্রোডাক্ট', 'Products', 'a', ' href="#products"') ?>
    <?= bi('Christmas Tree', 'Christmas Tree', 'a', ' href="#trees"') ?>
+   <?= bi('প্রোডাক্ট', 'Products', 'a', ' href="#shop"') ?>
    <?php if ($on('cms_reviews')): ?><?= bi('রিভিউ', 'Reviews', 'a', ' href="#reviews"') ?><?php endif; ?>
    <?= bi('যোগাযোগ', 'Contact', 'a', ' href="#contact"') ?>
   </nav>
@@ -825,7 +868,7 @@ $PHIC = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" s
   <div class="head"><span class="xmas">Shop by category</span><?= bi('কোনটা খুঁজছেন?', 'What are you looking for?', 'h2') ?></div>
   <div class="cats" style="--n:<?= min(8, max(3, count($cats))) ?>">
    <?php foreach ($cats as $c): $n = count(array_filter($list, fn($p) => $p['cat'] === $c['id'])); ?>
-   <a class="cat" href="#products" data-cat="<?= h($c['id']) ?>"><div class="c"><img src="<?= h(img_url(thumb_path($c['img']))) ?>" alt="" loading="lazy" width="170" height="170"></div><span class="cn"><?= h($c['name']) ?></span><small><?= bi(bn_num($n) . 'টি আইটেম', $n . ' items') ?></small></a>
+   <a class="cat" href="#shop/<?= h($c['id']) ?>"><div class="c"><img src="<?= h(img_url(thumb_path($c['img']))) ?>" alt="" loading="lazy" width="170" height="170"></div><span class="cn"><?= h($c['name']) ?></span><small><?= bi(bn_num($n) . 'টি আইটেম', $n . ' items') ?></small></a>
    <?php endforeach; ?>
   </div>
  </div>
@@ -850,24 +893,33 @@ $PHIC = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" s
 </section>
 <?php endif; ?>
 
-<section id="products" style="padding-top:28px">
- <div class="wrap">
-  <div class="head"><span class="xmas">The Collection</span><?= $T('cms_products_title', 'h2') ?><?= $T('cms_products_sub', 'p') ?></div>
-  <div class="fbar">
-   <div class="wishhead" id="wishhead" hidden><b><?= bi('আমার পছন্দের তালিকা', 'My wishlist') ?></b><button type="button" data-wishoff><?= bi('সব প্রোডাক্ট দেখুন', 'See all products') ?></button></div>
-   <div class="chips" id="chips"></div>
-   <div class="ftools"><input id="q" type="search" placeholder="খুঁজুন..." data-en-ph="Search..." aria-label="Search"><select id="sort" aria-label="Sort"><option value="" data-en="Popular">জনপ্রিয়</option><option value="new" data-en="Newest">নতুন আগে</option><option value="lo" data-en="Price: low to high">দাম: কম থেকে বেশি</option><option value="hi" data-en="Price: high to low">দাম: বেশি থেকে কম</option></select></div>
-  </div>
-  <div class="grid" id="pgrid"></div>
- </div>
-</section>
-
 <section class="trees" id="trees">
  <div class="wrap">
   <div class="head"><span class="xmas">Christmas trees</span><?= $T('cms_trees_title', 'h2') ?><?= $T('cms_trees_sub', 'p') ?></div>
   <div class="grid" id="tgrid"></div>
  </div>
 </section>
+
+<section id="products" style="padding-top:28px">
+ <div class="wrap">
+  <div class="head homehead"><span class="xmas">The Collection</span><?= $T('cms_products_title', 'h2') ?><?= $T('cms_products_sub', 'p') ?></div>
+  <div class="phead" id="phead"></div>
+  <div class="fbar">
+      <div class="chips" id="chips"></div>
+   <div class="ftools"><input id="q" type="search" placeholder="খুঁজুন..." data-en-ph="Search..." aria-label="Search"><select id="sort" aria-label="Sort"><option value="" data-en="Popular">জনপ্রিয়</option><option value="new" data-en="Newest">নতুন আগে</option><option value="lo" data-en="Price: low to high">দাম: কম থেকে বেশি</option><option value="hi" data-en="Price: high to low">দাম: বেশি থেকে কম</option></select></div>
+  </div>
+  <div class="grid" id="pgrid"></div>
+ </div>
+</section>
+
+<section class="pview" id="pview">
+ <div class="wrap">
+  <nav class="crumb" id="pcrumb" aria-label="Breadcrumb"></nav>
+  <div class="pv"><div class="pvimg"><div class="pvmain"><img id="pimg" alt="" width="800" height="800"><button class="wish pvwish" id="pvwish" data-wish="" aria-label="Wishlist"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 21s-7.5-4.6-9.5-9.2C1 8.2 3.3 4.5 7 4.5c2 0 3.4 1.1 5 3 1.6-1.9 3-3 5-3 3.7 0 6 3.7 4.5 7.3C19.5 16.4 12 21 12 21z"/></svg></button></div><div class="thumbs" id="pthumbs"></div></div><div class="pvt" id="pt"></div></div>
+  <div class="rel"><div class="head"><span class="xmas">You may also like</span><?= bi('আরও দেখুন', 'More to see', 'h2') ?></div><div class="grid" id="rgrid"></div></div>
+ </div>
+</section>
+
 
 <?php if ($on('cms_countdown')): ?>
 <section class="count">
@@ -927,7 +979,7 @@ $PHIC = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" s
  <div class="wrap">
   <div class="fgrid">
    <div><div class="fbrand"><?= h($store) ?></div><?= $T('cms_footer', 'p') ?><div class="paychips"><span>Cash on Delivery</span><?php if ($pay['bkash']): ?><span>bKash</span><?php endif; ?><?php if ($pay['nagad']): ?><span>Nagad</span><?php endif; ?></div></div>
-   <div><?= bi('লিংক', 'Links', 'h3') ?><?= bi('প্রোডাক্ট', 'Products', 'a', ' href="#products"') ?><?= bi('Christmas Tree', 'Christmas Tree', 'a', ' href="#trees"') ?><?php if ($on('cms_steps')): ?><?= bi('কিভাবে অর্ডার', 'How to order', 'a', ' href="#how"') ?><?php endif; ?></div>
+   <div><?= bi('লিংক', 'Links', 'h3') ?><?= bi('Christmas Tree', 'Christmas Tree', 'a', ' href="#trees"') ?><?= bi('প্রোডাক্ট', 'Products', 'a', ' href="#shop"') ?><?php if ($on('cms_steps')): ?><?= bi('কিভাবে অর্ডার', 'How to order', 'a', ' href="#how"') ?><?php endif; ?></div>
    <div><?= bi('যোগাযোগ', 'Contact', 'h3') ?><a href="tel:<?= h($tel) ?>" data-contact>📞 <?= h($phone) ?></a><a href="https://wa.me/<?= h($wa) ?>" target="_blank" rel="noopener" data-contact>💬 WhatsApp</a><?php if ($fb): ?><a href="<?= h($fb) ?>" target="_blank" rel="noopener">📘 Facebook</a><?php endif; ?><?php if ($email): ?><a href="mailto:<?= h($email) ?>">✉️ <?= h($email) ?></a><?php endif; ?><?php if ($addr): ?><span style="display:block;padding:3px 0">📍 <?= h($addr) ?></span><?php endif; ?></div>
   </div>
   <div class="copy">© <span id="yr">2026</span> <?= h($store) ?>. Merry Christmas! 🎄</div>
@@ -939,8 +991,8 @@ $PHIC = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" s
 
 <nav class="tabbar" aria-label="<?= $EN ? 'Shortcuts' : 'শর্টকাট' ?>">
  <a href="#top" data-tab="home"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><?= bi('হোম', 'Home') ?></a>
- <a href="#products" data-tab="shop"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg><?= bi('শপ', 'Shop') ?></a>
- <a href="#products" data-tab="wish" data-wishtab><svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.2-9C1.5 8 3.6 4.8 7 4.8c2 0 3.3 1 5 2.9 1.7-1.9 3-2.9 5-2.9 3.4 0 5.5 3.2 4.2 6.7-1.7 4.4-9.2 9-9.2 9z"/></svg><?= bi('পছন্দ', 'Wishlist') ?><i class="wish-n">০</i></a>
+ <a href="#shop" data-tab="shop"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg><?= bi('শপ', 'Shop') ?></a>
+ <a href="#wish" data-tab="wish"><svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.2-9C1.5 8 3.6 4.8 7 4.8c2 0 3.3 1 5 2.9 1.7-1.9 3-2.9 5-2.9 3.4 0 5.5 3.2 4.2 6.7-1.7 4.4-9.2 9-9.2 9z"/></svg><?= bi('পছন্দ', 'Wishlist') ?><i class="wish-n">০</i></a>
  <a href="#" data-cart data-tab="bag" onclick="return false"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1.2 12.1a1 1 0 0 1-1 .9H7.2a1 1 0 0 1-1-.9z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><?= bi('ব্যাগ', 'Bag') ?><i class="cart-n">০</i></a>
  <a class="tb-wa" href="https://wa.me/<?= h($wa) ?>?text=Christmas%20Gallery%20theke%20order%20korte%20chai" target="_blank" rel="noopener" data-contact><svg viewBox="0 0 24 24" class="f"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2m0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2m4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4a.5.5 0 0 0 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3"/></svg><span>WhatsApp</span></a>
 </nav>
@@ -1061,6 +1113,30 @@ function renderWishN(){document.querySelectorAll('.wish-n').forEach(function(e){
 function toggleWish(id){id=String(id);var i=WISH.indexOf(id);if(i>-1)WISH.splice(i,1);else WISH.push(id);try{localStorage.setItem('cg_wish',JSON.stringify(WISH))}catch(e){}
  document.querySelectorAll('[data-wish="'+id+'"]').forEach(function(b){b.classList.toggle('on',i<0)});renderWishN();if(WMODE)renderGrids()}
 
+/* ===== pages: home, shop, product (hash routes) ===== */
+var ROUTE='home',BASETITLE=document.title;
+function renderPhead(n){var h=document.getElementById('phead');if(!h)return;if(ROUTE==='home'){h.innerHTML='';return}
+ var ck=CFG.cats.find(function(k){return k.id===CAT}),t=WMODE?L('আমার পছন্দের তালিকা','My wishlist'):ck?ck.name:L('সব প্রোডাক্ট','All products');
+ h.innerHTML='<nav class="crumb"><a href="#top">'+L('হোম','Home')+'</a><span>/</span>'+(WMODE||ck?'<a href="#shop">'+L('শপ','Shop')+'</a><span>/</span>':'')+'<b>'+esc(t)+'</b></nav><h1>'+esc(t)+'</h1><p>'+L(num(n)+'টি প্রোডাক্ট',n+' products')+'</p>'}
+function route(){var h=decodeURIComponent(location.hash.replace(/^#\/?/,'')),m,prev=ROUTE;
+ WMODE=false;
+ if(h==='products'||h==='shop'){ROUTE='shop';CAT=''}
+ else if(h==='trees'){ROUTE='shop';CAT=(TREES[0]&&TREES[0].cat)||''}
+ else if((m=h.match(/^shop\/(.+)$/))){ROUTE='shop';CAT=m[1]}
+ else if(h==='wish'){ROUTE='shop';CAT='';WMODE=true}
+ else if((m=h.match(/^product\/(.+)$/))&&ALL[m[1]]){ROUTE='product'}
+ else ROUTE='home';
+ var b=document.body;b.classList.toggle('r-page',ROUTE!=='home');b.classList.toggle('r-shop',ROUTE==='shop');b.classList.toggle('r-product',ROUTE==='product');
+ if(ROUTE==='product')showProduct(m[1]);else{MP=null;document.title=ROUTE==='shop'?(WMODE?L('পছন্দের তালিকা','Wishlist'):(CFG.cats.find(function(k){return k.id===CAT})||{name:L('শপ','Shop')}).name)+' | '+CFG.store:BASETITLE}
+ if(ROUTE!=='home'||prev!=='home'){Q='';var qi=document.getElementById('q');if(qi)qi.value=''}
+ if(ROUTE==='home')CAT='';
+ renderChips();renderGrids();tabOn(ROUTE==='product'?'':WMODE?'wish':ROUTE==='shop'?'shop':(h===''||h==='top'?'home':''));
+ document.getElementById('menu').classList.remove('open');
+ if(ROUTE!=='home')window.scrollTo(0,0);
+ else if(h&&h!=='top'){var el=document.getElementById(h);if(el&&prev!=='home'){var go=function(){el.scrollIntoView({behavior:'instant',block:'start'})};setTimeout(go,30);setTimeout(go,350)}}
+ else if(prev!=='home'||h==='top')window.scrollTo(0,0)}
+window.addEventListener('hashchange',route);
+
 /* ===== listing, filters ===== */
 var CAT='',Q='',SORT='';
 function renderChips(){var c=document.getElementById('chips');if(!c)return;
@@ -1068,17 +1144,17 @@ function renderChips(){var c=document.getElementById('chips');if(!c)return;
 function sortList(a){a=a.slice();
  if(SORT==='new')a.sort(function(x,y){return y.id-x.id});
  else if(SORT==='lo'||SORT==='hi')a.sort(function(x,y){if(!x.price)return 1;if(!y.price)return -1;return SORT==='lo'?x.price-y.price:y.price-x.price});
- else a.sort(function(x,y){return (y.ft-x.ft)||(y.bs-x.bs)});
+ else a.sort(function(x,y){return ((y.type==='tree')-(x.type==='tree'))||(y.ft-x.ft)||(y.bs-x.bs)});
  return a}
 function renderGrids(){
  var q=Q.trim().toLowerCase(),filtered=!!(CAT||q);
- var src=filtered?PRODUCTS.concat(TREES):PRODUCTS;
+ var src=(filtered||ROUTE!=='home')?TREES.concat(PRODUCTS):PRODUCTS;
  if(WMODE)src=PRODUCTS.concat(TREES);
  var list=src.filter(function(p){return (!WMODE||isW(p.id))&&(!CAT||p.cat===CAT)&&(!q||(p.name+' '+p.desc+' '+p.desc_en+' '+p.badge).toLowerCase().indexOf(q)>-1)});
  document.getElementById('pgrid').innerHTML=sortList(list).map(function(p){return card(p,p.type==='tree')}).join('')||'<div class="noitems">'+(WMODE?L('পছন্দের তালিকা খালি। প্রোডাক্টের ছবিতে ♡ চাপলে এখানে জমা থাকবে।','Your wishlist is empty. Tap ♡ on a product to save it.'):L('কিছু পাওয়া যায়নি। অন্য কিছু লিখে খুঁজুন।','Nothing found. Try another word.'))+'</div>';
- var wh=document.getElementById('wishhead');if(wh)wh.hidden=!WMODE;
+ renderPhead(list.length);
  document.getElementById('tgrid').innerHTML=sortList(TREES).map(function(p){return card(p,true)}).join('');
- document.getElementById('trees').style.display=TREES.length&&!filtered&&!WMODE?'':'none';
+ document.getElementById('trees').style.display=TREES.length&&!filtered&&ROUTE==='home'?'':'none';
  var fs=document.getElementById('flash');if(fs){var fl=PRODUCTS.concat(TREES).filter(function(p){return p.fl&&p.price&&p.stock});fs.hidden=!fl.length;document.getElementById('fgrid').innerHTML=fl.map(function(p){return card(p,p.type==='tree')}).join('')}
 }
 
@@ -1119,12 +1195,18 @@ var tt;function toast(m){var t=document.getElementById('toast');t.textContent=m;
 
 /* ===== product view ===== */
 var MP=null;
-function openProduct(id){var p=ALL[id];if(!p)return;MP={p:p,s:p.sizes[0]||'',c:p.colors[0]||'',q:1};renderModal();
- var imgs=[p.img].concat(p.gal||[]).filter(function(u,i,a){return a.indexOf(u)===i}),mi=document.getElementById('mimg');mi.src=imgs[0];mi.alt=p.name;
- document.getElementById('thumbs').innerHTML=imgs.length>1?imgs.map(function(u,i){return '<img src="'+esc(u)+'" alt="" data-th="'+esc(u)+'"'+(i?'':' class="on"')+'>'}).join(''):'';
- document.getElementById('modal').classList.add('open');px('ViewContent',{content_ids:[String(p.id)],content_name:p.name,content_type:'product',value:p.price,currency:'BDT'})}
-function renderModal(){if(!MP)return;var p=MP.p,o=off(p),mt=document.getElementById('mt');
- var h=(p.size?'<span class="ptag">'+esc(p.size)+'</span>':'')+'<h3>'+esc(p.name)+'</h3>'+
+function openProduct(id){if(ALL[id])location.hash='product/'+id}
+function showProduct(id){var p=ALL[id];if(!p)return false;MP={p:p,s:p.sizes[0]||'',c:p.colors[0]||'',q:1};renderModal();
+ var imgs=[p.img].concat(p.gal||[]).filter(function(u,i,a){return a.indexOf(u)===i}),mi=document.getElementById('pimg');mi.src=imgs[0];mi.alt=p.name;
+ document.getElementById('pthumbs').innerHTML=imgs.length>1?imgs.map(function(u,i){return '<img src="'+esc(u)+'" alt="" data-th="'+esc(u)+'"'+(i?'':' class="on"')+' width="70" height="70">'}).join(''):'';
+ var wb=document.getElementById('pvwish');wb.dataset.wish=p.id;wb.classList.toggle('on',isW(p.id));
+ var ck=CFG.cats.find(function(k){return k.id===p.cat});
+ document.getElementById('pcrumb').innerHTML='<a href="#top">'+L('হোম','Home')+'</a><span>/</span><a href="#shop">'+L('শপ','Shop')+'</a>'+(ck?'<span>/</span><a href="#shop/'+esc(ck.id)+'">'+esc(ck.name)+'</a>':'')+'<span>/</span><b>'+esc(p.name)+'</b>';
+ var all=PRODUCTS.concat(TREES),rel=all.filter(function(x){return x.id!==p.id&&x.cat===p.cat});rel=rel.concat(all.filter(function(x){return x.id!==p.id&&x.cat!==p.cat})).slice(0,4);
+ document.getElementById('rgrid').innerHTML=rel.map(function(x){return card(x,x.type==='tree')}).join('');
+ document.title=p.name+' | '+CFG.store;px('ViewContent',{content_ids:[String(p.id)],content_name:p.name,content_type:'product',value:p.price,currency:'BDT'});return true}
+function renderModal(){if(!MP)return;var p=MP.p,o=off(p),mt=document.getElementById('pt');
+ var h=(p.size?'<span class="ptag">'+esc(p.size)+'</span>':'')+'<h1 class="pvh">'+esc(p.name)+'</h1>'+
   (p.rc?'<div class="rc">'+stars(p.rating)+' '+num(p.rating)+' ('+L(num(p.rc)+'টি রিভিউ',p.rc+' reviews')+')</div>':'')+
   '<div>'+priceHTML(p)+(o?' <span class="badge off" style="position:static;display:inline-block;margin-left:6px">-'+num(o)+'%</span>':'')+'</div>'+lowq(p)+
   '<p style="color:var(--muted)">'+esc(desc(p))+'</p>';
@@ -1153,16 +1235,12 @@ document.getElementById('rform').addEventListener('submit',function(e){e.prevent
 document.addEventListener('click',function(e){
  var t=e.target;
  var wb=t.closest('[data-wish]');if(wb){e.preventDefault();toggleWish(wb.dataset.wish);return}
- if(t.closest('[data-wishtab]')){e.preventDefault();WMODE=true;CAT='';Q='';document.getElementById('q').value='';renderChips();renderGrids();tabOn('wish');document.getElementById('products').scrollIntoView({behavior:'smooth'});return}
- if(t.closest('[data-wishoff]')){WMODE=false;renderGrids();tabOn('');return}
- var tb=t.closest('.tabbar a[href^="#"]');if(tb&&WMODE){WMODE=false;renderGrids()}
- var ch=t.closest('[data-chip]');if(ch){WMODE=false;CAT=ch.dataset.chip==='0'?'':ch.dataset.chip;renderChips();renderGrids();return}
- var ct=t.closest('[data-cat]');if(ct){CAT=ct.dataset.cat;Q='';document.getElementById('q').value='';renderChips();renderGrids()}
- var th=t.closest('[data-th]');if(th){document.getElementById('mimg').src=th.dataset.th;document.querySelectorAll('#thumbs img').forEach(function(i){i.classList.toggle('on',i===th)});return}
+ var ch=t.closest('[data-chip]');if(ch){location.hash=ch.dataset.chip==='0'?'shop':'shop/'+ch.dataset.chip;return}
+ var th=t.closest('[data-th]');if(th){document.getElementById('pimg').src=th.dataset.th;document.querySelectorAll('#pthumbs img').forEach(function(i){i.classList.toggle('on',i===th)});return}
  var ps=t.closest('[data-ps]');if(ps){MP.s=ps.dataset.ps;renderModal();return}
- var pc=t.closest('[data-pc]');if(pc){MP.c=pc.dataset.pc;var gm=(MP.p.galc||[]).find(function(g){return g.c&&g.c.toLowerCase()===MP.c.toLowerCase()});if(gm){document.getElementById('mimg').src=gm.s;document.querySelectorAll('#thumbs img').forEach(function(i){i.classList.toggle('on',i.dataset.th===gm.s)})}renderModal();return}
+ var pc=t.closest('[data-pc]');if(pc){MP.c=pc.dataset.pc;var gm=(MP.p.galc||[]).find(function(g){return g.c&&g.c.toLowerCase()===MP.c.toLowerCase()});if(gm){document.getElementById('pimg').src=gm.s;document.querySelectorAll('#pthumbs img').forEach(function(i){i.classList.toggle('on',i.dataset.th===gm.s)})}renderModal();return}
  var mq=t.closest('[data-mq]');if(mq){MP.q=Math.max(1,Math.min(maxQ(MP.p),MP.q+(+mq.dataset.mq)));renderModal();return}
- var ma=t.closest('[data-madd]');if(ma){addCart(MP.p.id,MP.q,MP.s,MP.c);if(ma.dataset.madd==='1'){closeModal();openCart()}return}
+ var ma=t.closest('[data-madd]');if(ma){addCart(MP.p.id,MP.q,MP.s,MP.c);if(ma.dataset.madd==='1'){openCart()}return}
  var rv=t.closest('[data-review]');if(rv){openReview(rv.dataset.review);return}
  if(t.closest('[data-rclose]')||t.id==='rmodal'){document.getElementById('rmodal').classList.remove('open');return}
  var q=t.closest('[data-q]');
@@ -1182,6 +1260,7 @@ document.addEventListener('click',function(e){
 document.addEventListener('change',function(e){if(e.target.name==='area')calc();if(e.target.name==='pay')payUI();if(e.target.id==='sort'){SORT=e.target.value;renderGrids()}});
 document.getElementById('q').addEventListener('input',function(e){Q=e.target.value;renderGrids()});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();document.getElementById('rmodal').classList.remove('open');closeCart()}});
+document.addEventListener('click',function(e){var a=e.target.closest('a[href="#top"]');if(a&&(location.hash==='#top'||location.hash==='')){e.preventDefault();if(location.hash==='#top')route();else location.hash='top'}});
 document.getElementById('burger').onclick=function(){document.getElementById('menu').classList.toggle('open')};
 
 /* ===== order ===== */
@@ -1221,7 +1300,7 @@ function applyLang(){
  document.querySelectorAll('.num[data-n]').forEach(function(el){el.textContent=tk(el.dataset.n)});
  document.getElementById('langt').textContent=LANG==='en'?'বাংলা':'English';
 }
-function setLang(l){LANG=l;try{localStorage.setItem('cg_lang',l)}catch(e){}applyLang();renderChips();renderGrids();renderCart();if(document.getElementById('drawer').classList.contains('open'))showStep(STEP);if(MP)renderModal();cd&&cd()}
+function setLang(l){LANG=l;try{localStorage.setItem('cg_lang',l)}catch(e){}applyLang();renderChips();renderGrids();renderCart();if(ROUTE==='product'&&MP)showProduct(MP.p.id);if(document.getElementById('drawer').classList.contains('open'))showStep(STEP);if(MP)renderModal();cd&&cd()}
 document.getElementById('lang').onclick=function(){setLang(LANG==='en'?'bn':'en')};
 
 /* hero slider */
@@ -1256,7 +1335,7 @@ document.getElementById('yr').textContent=new Date().getFullYear();
  (function loop(){x.clearRect(0,0,W,H);x.fillStyle='rgba(255,255,255,.85)';f.forEach(function(p){p.y+=p.v;p.x+=p.w;if(p.y>H){p.y=-5;p.x=Math.random()*W}x.beginPath();x.arc(p.x,p.y,p.r,0,6.3);x.fill()});requestAnimationFrame(loop)})();})();
 <?php endif; ?>
 
-renderChips();renderGrids();renderCart();applyLang();
+route();renderCart();applyLang();
 </script>
 </body>
 </html>

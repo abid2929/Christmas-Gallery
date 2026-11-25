@@ -23,7 +23,7 @@ Premium red and gold online shop for Christmas balls, tree stars, fairy lights, 
 
 ## Screenshots
 
-| Phone: first screen | Phone: products | Product details |
+| Phone: first screen | Phone: products | Product page |
 |:---:|:---:|:---:|
 | <img src=".github/screenshots/ph-home.webp" width="230" alt="Phone home"> | <img src=".github/screenshots/ph-cards.webp" width="230" alt="Phone products"> | <img src=".github/screenshots/pc-product.webp" width="420" alt="Product details"> |
 
@@ -37,7 +37,8 @@ Premium red and gold online shop for Christmas balls, tree stars, fairy lights, 
 - Premium red and gold Christmas design with a soft entrance animation
 - Product banner slider at the top, colourful category tiles right below it
 - Bangla first, one tap to switch to English
-- Product details with photo gallery, sizes and colours
+- Separate shop page per category and a full product page (photo gallery, sizes, colours, related items), with working back button
+- Christmas Trees first everywhere
 - Cart and order with the full cart sent straight to WhatsApp
 - Customer reviews and a ♡ wishlist
 - Phone bottom tab bar: Home, Shop, Wishlist, Bag, WhatsApp
