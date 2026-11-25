@@ -261,12 +261,12 @@ function askAI() {
    <textarea id="aiq" placeholder="Ask anything about your shop…"></textarea><div><button class="btn vi" onclick="runAI(this)">✦ Ask</button></div><div id="aia" class="box" hidden style="white-space:pre-wrap"></div></div>`);
 }
 async function runAI(b) {
-  const q = $("#aiq").value.trim(); if (!q) return; b.disabled = true; const j = await api("ai", { prompt: "You help a Christmas decoration shop in Bangladesh called Christmas Gallery (Christmas trees, balls, stars, lights, Santa, wreaths, gifts; phone 01779-443155). Answer briefly in simple English.\n\n" + q }); b.disabled = false;
+  const q = $("#aiq").value.trim(); if (!q) return; b.disabled = true; const j = await api("ai", { prompt: "You help a Christmas decoration shop in Bangladesh called Christmas Gallery (Christmas trees, balls, stars, lights, Santa, wreaths, gifts; phone 01353-119498). Answer briefly in simple English.\n\n" + q }); b.disabled = false;
   const S = (DB.site || {}).store || {};
   const fallback = /facebook|post/i.test(q) ? `🎄 Christmas offer at ${S.name || "Christmas Gallery"}!
 Christmas tree, balls, star, fairy lights, Santa and wreath, all in one place.
 🚚 Delivery all over Bangladesh · 💵 Cash on delivery
-📞 Order: ${S.phone || "01779-443155"}
+📞 Order: ${S.phone || "01353-119498"}
 #ChristmasGallery #Christmas #Dhaka`
     : /seo/i.test(q) ? `${S.name || "Christmas Gallery"} is an online Christmas decoration shop in Bangladesh. Buy Christmas trees, balls, tree stars, fairy lights, Santa dolls, wreaths and gift boxes with delivery all over the country and cash on delivery.`
     : /delivery/i.test(q) ? `Thank you for your message! Inside Dhaka we deliver in 1-2 days and outside Dhaka in 2-4 days. Cash on delivery is available. – ${S.name || "Christmas Gallery"}`

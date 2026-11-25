@@ -8,7 +8,7 @@ function thumb_path(string $p): string { $u = img_url($p); if (preg_match('~^img
 function csv_list($s): array { return array_values(array_filter(array_map('trim', explode(',', (string)$s)), 'strlen')); }
 $site = pv_read('site'); $st = $site['store'] ?? []; $cms = $site['cms'] ?? []; $dl = $site['delivery'] ?? []; $pm = $site['payment'] ?? []; $seo = $site['seo'] ?? [];
 $store = $st['name'] ?? 'Christmas Gallery';
-$phone = $st['phone'] ?? '01779-443155';
+$phone = $st['phone'] ?? '01353-119498';
 $wa = preg_replace('/\D/', '', (string)($st['whatsapp'] ?? '')) ?: '88' . preg_replace('/\D/', '', $phone);
 $tel = '+88' . preg_replace('/^\+?88/', '', preg_replace('/\D/', '', $phone));
 $fb = $st['facebook'] ?? ''; $addr = $st['address'] ?? ''; $email = $st['email'] ?? '';

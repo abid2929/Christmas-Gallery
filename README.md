@@ -8,7 +8,7 @@ Premium red and gold online shop for Christmas balls, tree stars, fairy lights, 
 
 [![Live site](https://img.shields.io/badge/Live_site-Open-8a1020?style=for-the-badge)](https://abid2929.github.io/Christmas-Gallery/)
 [![Admin demo](https://img.shields.io/badge/Admin_panel-Demo-c9a24e?style=for-the-badge)](https://abid2929.github.io/Christmas-Gallery/admin/)
-[![WhatsApp](https://img.shields.io/badge/WhatsApp-01779--443155-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/8801779443155)
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-01353--119498-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/8801353119498)
 
 ![PHP 8](https://img.shields.io/badge/PHP-8-777bb4?logo=php&logoColor=white)
 ![No database](https://img.shields.io/badge/Database-none_(JSON)-555)
